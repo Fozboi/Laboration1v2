@@ -19,8 +19,28 @@ class Saab95Test {
         double postSpeed = testSaab.currentSpeed;
 
         assertTrue(postSpeed < preSpeed);
-
     }
+
+    @Test
+    public void turboIncreasingAcceleration(){
+        double preSpeed = 20;
+        double gasFactor = 0.5;
+
+        testSaab.currentSpeed = preSpeed;
+        testSaab.setTurboOff();
+        testSaab.gas(gasFactor);
+        double offSpeed = testSaab.getCurrentSpeed();
+
+        testSaab.currentSpeed = preSpeed;
+        testSaab.setTurboOn();
+        testSaab.gas(gasFactor);
+        double onSpeed = testSaab.getCurrentSpeed();
+
+
+        assertTrue(offSpeed < onSpeed);
+    }
+
+
 
 
 
