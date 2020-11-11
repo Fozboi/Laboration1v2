@@ -10,7 +10,7 @@ class CarTest {
     public Point position = new Point(200,200);
     Saab95 testCar;
     double currentSpeed = 0.1;
-    int dir = 0; //north
+    public int dir = 0; //north
 
     @BeforeEach
     public void init(){
@@ -26,6 +26,19 @@ class CarTest {
 
         assertNotSame(yPosBefore, yPosAfter);
 
+
+    }
+
+    @Test
+    public void turnRightWorks(){
+        testCar.turnRight();
+        assertTrue(testCar.dir==1);
+
+    }
+    @Test
+    public void turnLeftWorks(){
+        testCar.turnLeft();
+        assertTrue(testCar.dir==3);
 
     }
 }
