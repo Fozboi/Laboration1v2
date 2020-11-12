@@ -53,16 +53,16 @@ public class CarGame extends JFrame{
     }//konstruktor skapar ny karta med bil
 
     public JLabel createLabel(Car inputCar){
-        int xcoord = (int) Math.round(inputCar.position.getX());
-        int ycoord = (int) Math.round(inputCar.position.getY());
+        int xcoord = (int) Math.round(inputCar.getPosition().getX());
+        int ycoord = (int) Math.round(inputCar.getPosition().getY());
 
-        if(inputCar.dir == Car.NORTH){
+        if(inputCar.getDir() == Car.NORTH){
             carIcon = new ImageIcon("carIconNORTH.png");
-        } else if(inputCar.dir == Car.EAST){
+        } else if(inputCar.getDir()== Car.EAST){
             carIcon = new ImageIcon("carIconEAST.png");
-        } else if(inputCar.dir == Car.SOUTH){
+        } else if(inputCar.getDir() == Car.SOUTH){
             carIcon = new ImageIcon("carIconSOUTH.png");
-        } else if(inputCar.dir == Car.WEST){
+        } else if(inputCar.getDir() == Car.WEST){
             carIcon = new ImageIcon("carIconWEST.png");
         }
 

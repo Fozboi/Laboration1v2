@@ -5,20 +5,20 @@ import java.awt.*;
  * Innehåller samtliga bilars funktioner men vissa override:as av subklasser
  */
 public class Car implements Moveable{
-    public Point position = new Point(200,200);
+    private Point position = new Point(200,200);
 
-    int dir;
+    private int dir;
     static final int NORTH = 0;
     static final int EAST = 1;
     static final int SOUTH = 2;
     static final int WEST = 3;
 
-    int nrDoors; // Number of doors on the car
-    double enginePower; // Engine power of the car
-    double currentSpeed; // The current speed of the car
-    Color color; // Color of the car
-    String modelName; // The car model name
-    // Skulle kunna göra dessa paket-private, alltså varken public/private
+    private int nrDoors; // Number of doors on the car
+    private double enginePower; // Engine power of the car
+    private double currentSpeed; // The current speed of the car
+    private Color color; // Color of the car
+    private String modelName; // The car model name
+
 
     public void move(){
         int xIntPos = (int) position.getX();
@@ -76,32 +76,40 @@ public class Car implements Moveable{
         return 1;
     }
 
-
+    public void setNrDoors(int nrDoors){this.nrDoors = nrDoors;}
     public int getNrDoors(){
         return nrDoors;
     }
+
+    public void setEnginePower(double enginePower){this.enginePower = enginePower;}
     public double getEnginePower(){
         return enginePower;
     }
 
+    public void setCurrentSpeed(double speed){currentSpeed = speed;}
     public double getCurrentSpeed(){
         return currentSpeed;
     }
 
+    public void setColor(Color clr){ color = clr;}
     public Color getColor(){
         return color;
-    }
-
-    public void setColor(Color clr){
-        color = clr;
     }
 
     public void startEngine(){
         currentSpeed = 0.1;
     }
-
     public void stopEngine(){
         currentSpeed = 0;
     }
+
+    public void setDir(int dir){this.dir = dir;}
+    public int getDir(){return dir;}
+
+    public void setModelName(String modelName){this.modelName = modelName;}
+    public String getModelName(){return modelName;}
+
+    public Point getPosition(){return position;}
+
 
 }

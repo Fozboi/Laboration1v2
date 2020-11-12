@@ -1,7 +1,7 @@
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class Saab95Test {
     Saab95 testSaab;
@@ -13,10 +13,10 @@ class Saab95Test {
 
     @Test
     public void breakDecreasingSpeed(){
-        testSaab.currentSpeed = 20;
-        double preSpeed = testSaab.currentSpeed;
+        testSaab.setCurrentSpeed(20);
+        double preSpeed = testSaab.getCurrentSpeed();
         testSaab.brake(0.5);
-        double postSpeed = testSaab.currentSpeed;
+        double postSpeed = testSaab.getCurrentSpeed();
 
         assertTrue(postSpeed < preSpeed);
     }
@@ -26,12 +26,12 @@ class Saab95Test {
         double preSpeed = 20;
         double gasFactor = 0.5;
 
-        testSaab.currentSpeed = preSpeed;
+        testSaab.setCurrentSpeed(preSpeed);
         testSaab.setTurboOff();
         testSaab.gas(gasFactor);
         double offSpeed = testSaab.getCurrentSpeed();
 
-        testSaab.currentSpeed = preSpeed;
+        testSaab.setCurrentSpeed(preSpeed);
         testSaab.setTurboOn();
         testSaab.gas(gasFactor);
         double onSpeed = testSaab.getCurrentSpeed();

@@ -1,7 +1,7 @@
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class Volvo240Test {
     Volvo240 testVolvo;
@@ -13,10 +13,10 @@ class Volvo240Test {
 
     @Test
     public void breakDecreasingSpeed(){
-        testVolvo.currentSpeed = 20;
-        double preSpeed = testVolvo.currentSpeed;
+        testVolvo.setCurrentSpeed(20);
+        double preSpeed = testVolvo.getCurrentSpeed();
         testVolvo.brake(0.5);
-        double postSpeed = testVolvo.currentSpeed;
+        double postSpeed = testVolvo.getCurrentSpeed();
 
         assertTrue(postSpeed < preSpeed);
     }

@@ -1,7 +1,5 @@
-import org.junit.Rule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.rules.ExpectedException;
 
 import java.awt.*;
 
@@ -34,33 +32,33 @@ class CarTest {
     @Test
     public void turnRightWorks(){
         testCar.turnRight();
-        assertTrue(testCar.dir==1);
+        assertTrue(testCar.getDir()==1);
 
     }
 
     @Test
     public void turnLeftWorks(){
         testCar.turnLeft();
-        assertTrue(testCar.dir==3);
+        assertTrue(testCar.getDir()==3);
 
     }
 
     @Test
     public void breakDecreasesSpeed(){
-        testCar.currentSpeed = 20;
-        double preSpeed = testCar.currentSpeed;
+        testCar.setCurrentSpeed(20);
+        double preSpeed = testCar.getCurrentSpeed();
         testCar.brake(0.5);
-        double postSpeed = testCar.currentSpeed;
+        double postSpeed = testCar.getCurrentSpeed();
 
         assertTrue(postSpeed < preSpeed);
     }
 
     @Test
     public void gasIncreasesSpeed(){
-        testCar.currentSpeed = 20;
-        double preSpeed = testCar.currentSpeed;
+        testCar.setCurrentSpeed(20);
+        double preSpeed = testCar.getCurrentSpeed();
         testCar.gas(0.5);
-        double postSpeed = testCar.currentSpeed;
+        double postSpeed = testCar.getCurrentSpeed();
 
         assertTrue(postSpeed > preSpeed);
     }
