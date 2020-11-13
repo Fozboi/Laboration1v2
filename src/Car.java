@@ -4,7 +4,7 @@ import java.awt.*;
  * Superklass Car, håller reda på en bils riktning, position och hastighet
  * Innehåller samtliga bilars funktioner men vissa override:as av subklasser
  */
-public class Car implements Moveable{
+public abstract class Car implements Moveable{
     private Point position = new Point(200,200);
 
     private int dir;
@@ -20,6 +20,9 @@ public class Car implements Moveable{
     private String modelName; // The car model name
 
 
+    /**
+     * metoden move, tar en position för en bil och utifrån rikting försljuter den längs axel
+     */
     public void move(){
         int xIntPos = (int) position.getX();
         int yIntPos = (int) position.getY();
@@ -46,6 +49,13 @@ public class Car implements Moveable{
         dir = (dir+1)%4;
     }
 
+    /**
+     * Anropar incrementSpeed, skickar vidare "gas-faktor"
+     * Kollar att amount ligger mellan 0 och 1
+     *
+     * @param amount
+     * "gas-faktor"
+     */
     public void gas(double amount){
         if (0 <= amount && amount <= 1) {
             incrementSpeed(amount);
@@ -72,9 +82,7 @@ public class Car implements Moveable{
         currentSpeed = Math.max(getCurrentSpeed() - this.speedFactor() * amount,0);
     }
 
-    double speedFactor(){
-        return 1;
-    }
+    abstract double speedFactor();
 
     public void setNrDoors(int nrDoors){this.nrDoors = nrDoors;}
     public int getNrDoors(){
