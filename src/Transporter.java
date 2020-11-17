@@ -3,11 +3,15 @@ import java.util.TreeMap;
 
 public class Transporter extends Car{
     Scania hasATruck;
+    int carCapacity;
+    double pickupRange;
 
     private TreeMap<Integer, Car> loadedCars = new TreeMap<Integer, Car>();
 
     public Transporter(){
         hasATruck = new Scania();
+        carCapacity = 3;
+        pickupRange = 10;
     }
 
     void setRampUp(){
@@ -17,18 +21,26 @@ public class Transporter extends Car{
         hasATruck.setTrailerAngle(70);
     }
 
-    boolean canLoadCar(){
-        int lastKey = loadedCars.lastKey();
-        double trailerAngle = hasATruck.getTrailerAngle();
+    boolean canLoadCar(Car car){
+        double xdif = car.getPosition().getX() - hasATruck.getPosition().getX();
+        double ydif = car.getPosition().getY() - hasATruck.getPosition().getY();
 
-        if (lastKey < 2 && trailerAngle == 70)
+
+        if(xdif > pickupRange || ydif > pickupRange){
+            return false;
+        } else if(car instanceof Transporter){
+            return false;
+        }else if(loadedCars.size() >= carCapacity){
+            return false;
+        }else if(hasATruck.getTrailerAngle() != 70){
+            return false;
+        }else
             return true;
-        else return false;
     }
 
-    public void loadCar(){
-        if (canLoadCar()){
-            loadedCars.put(loadedCars.lastKey()+1,);
+    public void loadCar(Car car){
+        if (canLoadCar(car)){
+            loadedCars.put(loadedCars.size()+1,car);
         }
     }
 
