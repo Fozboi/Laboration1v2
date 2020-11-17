@@ -14,7 +14,7 @@ public class Scania extends Car {
         stopEngine();
     }
 
-    double speedFactor(){
+    public double speedFactor(){
         if(trailerAngle == 0){
             return getEnginePower() * 0.01;
         }
@@ -28,7 +28,7 @@ public class Scania extends Car {
      * och bilen ej rör sig
      * @param newAngle vinkel flaket önskas flyttas till
      */
-    void setTrailerAngle(double newAngle){
+     public void setTrailerAngle(double newAngle){
         if(newAngle <= 70 && newAngle >= 0){
             if(getCurrentSpeed() == 0){
                 trailerAngle = newAngle;
@@ -40,6 +40,10 @@ public class Scania extends Car {
         else{
             throw new IllegalArgumentException("Only angles between 0 and 70 allowed");
         }
+    }
+
+    public double getTrailerAngle(){
+        return trailerAngle;
     }
 
     public static void main(String[] args){

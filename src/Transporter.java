@@ -3,27 +3,21 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 public class Transporter extends Car{
+    Scania hasATruck;
 
-    private boolean rampDown; //false by default
     private SortedMap<Integer, String> loadedCars = new TreeMap<Integer, String>();
 
     public Transporter(){
-        setNrDoors(2);
-        setColor(Color.black);
-        setEnginePower(90);
-        setModelName("Transporter");
-        stopEngine();
+        hasATruck = new Scania();
     }
 
-
-    double speedFactor(){
-        if(rampDown == false){
-            return getEnginePower() * 0.01;
-        }
-        else{
-            return 0;
-        }
+    void setRampUp(){
+        hasATruck.setTrailerAngle(0);
     }
+    void setRampDown(){
+        hasATruck.setTrailerAngle(70);
+    }
+
 
     boolean canLoadCar(){
         if (loadedCars < 2){ // max 2 cars on transport
@@ -34,4 +28,8 @@ public class Transporter extends Car{
     }
 
 
+    @Override
+    double speedFactor() {
+        return hasATruck.speedFactor();
+    }
 }
