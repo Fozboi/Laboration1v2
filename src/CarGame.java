@@ -18,7 +18,8 @@ public class CarGame extends JFrame{
 
         CarGame map = new CarGame(car); //skapa ny karta
 
-        truck.setPosition(new Point(220,200));
+        car.setPosition(new Point(350,350));
+        truck.setPosition(new Point(370,350));
 
         for (int i = 0; i <= 900; i++){
             if(i%30 == 1)
@@ -65,6 +66,7 @@ public class CarGame extends JFrame{
             map.repaint(); //uppdaterar fönstret
             wait(17); //väntar 17 millisekunder = 60FPS
         }
+        System.out.println("run over");
     }
 
     public CarGame(Car car){
