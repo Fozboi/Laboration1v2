@@ -25,7 +25,6 @@ public class Transporter extends Car{
         double xdif = car.getPosition().getX() - hasATruck.getPosition().getX();
         double ydif = car.getPosition().getY() - hasATruck.getPosition().getY();
 
-
         if(xdif > pickupRange || ydif > pickupRange){
             return false;
         } else if(car instanceof Transporter){

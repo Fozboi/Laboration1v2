@@ -21,7 +21,7 @@ public abstract class Car implements Moveable{
 
 
     /**
-     * metoden move, tar en position för en bil och utifrån rikting försljuter den längs axel
+     * metoden move, tar en position för en bil och utifrån rikting förskjuter den längs axel
      */
     public void move(){
         int xIntPos = (int) position.getX();
