@@ -1,5 +1,8 @@
 import java.awt.*;
 
+/**
+ * Lastbil Scania, har ett flak med en vinkel
+ */
 public class Scania extends Car {
     private double trailerAngle;
 
@@ -20,6 +23,11 @@ public class Scania extends Car {
         }
     }
 
+    /**
+     * Sätter flakets vinkel till önskad vinkel om vinkeln är mellan 0 och 70
+     * och bilen ej rör sig
+     * @param newAngle vinkel flaket önskas flyttas till
+     */
     void setTrailerAngle(double newAngle){
         if(newAngle <= 70 && newAngle >= 0){
             if(getCurrentSpeed() == 0){
