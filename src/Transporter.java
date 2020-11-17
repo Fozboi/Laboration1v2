@@ -39,7 +39,7 @@ public class Transporter extends Car{
     }
 
     public void loadCar(Car car){
-        if (canLoadCar()){
+        if (canLoadCar(car)){
             loadedCars.put(loadedCars.lastKey()+1,car);
         }
     }
