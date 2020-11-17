@@ -48,6 +48,24 @@ public class Transporter extends Car{
         if (loadedCars.size() > 0){
             Car i = loadedCars.get(loadedCars.lastKey());
             loadedCars.remove(loadedCars.lastKey());
+
+            int xIntPos = (int) hasATruck.getPosition().getX();
+            int yIntPos = (int) hasATruck.getPosition().getY();
+
+            if(hasATruck.getDir() == NORTH){
+                yIntPos += pickupRange;
+            }
+            else if(hasATruck.getDir() == SOUTH){
+                yIntPos += -pickupRange;
+            }
+            else if(hasATruck.getDir() == WEST){
+                xIntPos += pickupRange;
+            }
+            else if(hasATruck.getDir() == EAST){
+                xIntPos += -pickupRange;
+            }
+            Point newPos = new Point(xIntPos, yIntPos);
+            i.setPosition(newPos);
         }
     }
 
