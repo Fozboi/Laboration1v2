@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.TreeMap;
 
 public class Transporter extends Car implements Loadable<Car>{
@@ -6,12 +7,16 @@ public class Transporter extends Car implements Loadable<Car>{
     int carCapacity;
     double pickupRange;
 
-    private TreeMap<Integer, Car> loadedCars = new TreeMap<Integer, Car>();
+    private ArrayList<Car> loadedCars = new ArrayList<Car>();
 
     public Transporter(int carCapacity){
         hasATruck = new Scania();
         this.carCapacity = carCapacity;
         pickupRange = 10;
+    }
+
+    public ArrayList<Car> getLoadedCars(){
+        return loadedCars;
     }
 
     void setRampUp(){
@@ -39,18 +44,18 @@ public class Transporter extends Car implements Loadable<Car>{
 
     public void loadCar(Car car){
         if (canLoadCar(car)){
-            loadedCars.put(loadedCars.size(),car);
+            loadedCars.add(car);
         }
     }
 
     public void unloadLastCar(){
-        Car lastCar = loadedCars.get(loadedCars.lastKey());
+        Car lastCar = loadedCars.get(loadedCars.size());
         unloadCar(lastCar);
     }
 
     public void unloadCar(Car car){
         if (loadedCars.size() > 0){
-            loadedCars.remove(loadedCars.lastKey());
+            loadedCars.remove(car);
 
             int xIntPos = (int) hasATruck.getPosition().getX();
             int yIntPos = (int) hasATruck.getPosition().getY();

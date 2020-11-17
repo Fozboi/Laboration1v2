@@ -2,6 +2,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -49,6 +50,29 @@ class TransporterTest {
         testTruck.setPosition(pos1);
         testCar.setPosition(pos2);
         testTruck.loadCar(testCar);
-        assertTrue(); //car was loaded and therefore added to the list of loaded cars
+        ArrayList<Car> carlist = testTruck.getLoadedCars();
+
+        assertTrue(carlist.size() == 1); //car was loaded and therefore added to the list of loaded cars
+    }
+
+    @Test
+    public void unloadLastCarWorks(){
+        Car testCar2 = new Volvo240();
+
+        testTruck.setRampDown();
+        Point pos1 = new Point(100,100);
+        Point pos2 = new Point(109,109);
+        testTruck.setPosition(pos1);
+        testCar.setPosition(pos2);
+        testCar2.setPosition(pos2);
+
+        testTruck.loadCar(testCar);
+        testTruck.loadCar(testCar2);
+        testTruck.unloadLastCar();
+
+        ArrayList<Car> carlist = testTruck.getLoadedCars();
+
+        assertTrue(carlist.size() == 1);
+        System.out.println(carlist);
     }
 }
