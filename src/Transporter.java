@@ -39,13 +39,16 @@ public class Transporter extends Car{
     }
 
     public void loadCar(Car car){
-        if (canLoadCar(car)){
-            loadedCars.put(loadedCars.size()+1,car);
+        if (canLoadCar()){
+            loadedCars.put(loadedCars.lastKey()+1,car);
         }
     }
 
-    public void unLoadCar(){
-
+    public void unloadCar(){
+        if (loadedCars.size() > 0){
+            Car i = loadedCars.get(loadedCars.lastKey());
+            loadedCars.remove(loadedCars.lastKey());
+        }
     }
 
 
