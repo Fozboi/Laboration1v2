@@ -10,6 +10,10 @@ public class Transporter implements Loadable<Car>,Moveable{
     double pickupRange;
     private ArrayList<Car> loadedCars;
 
+    /**
+     * konstruktor, skapar en Scania-lastbil som via specifikationsarv ger transporter rörelsemöjligheter
+     * @param carCapacity maxkapacitet antal bilar
+     */
     public Transporter(int carCapacity){
         hasATruck = new Scania();
         this.carCapacity = carCapacity;

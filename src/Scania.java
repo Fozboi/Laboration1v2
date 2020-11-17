@@ -42,17 +42,13 @@ public class Scania extends Car {
         }
     }
 
+    /**
+     * ger vinkeln på flaker
+     */
     public double getTrailerAngle(){
         return trailerAngle;
     }
 
-    public static void main(String[] args){
-        Scania bil = new Scania();
-        bil.setTrailerAngle(60);
-        bil.setTrailerAngle(0);
-        bil.gas(1);
-
-    }
 
 
 }
