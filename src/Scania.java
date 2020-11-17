@@ -13,7 +13,9 @@ public class Scania extends Car {
     }
 
     void setTrailerAngle(double newAngle){
-        
+        if(newAngle <= 70 && newAngle >= 0 && getCurrentSpeed() == 0){
+            trailerAngle = newAngle;
+        }
     }
 
 
