@@ -91,4 +91,8 @@ public class Transporter extends Car implements Loadable<Car>{
     double speedFactor() {
         return hasATruck.speedFactor();
     }
+
+    public void setPosition(Point newPos){
+        hasATruck.setPosition(newPos);
+    }
 }

@@ -75,6 +75,7 @@ class TransporterTest {
 
         testTruck.loadCar(testCar2);
         testTruck.loadCar(testCar);
+
         testTruck.unloadLastCar();
 
         assertTrue(testTruck.getLoadedCars().size() == 1);
