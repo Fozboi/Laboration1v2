@@ -15,11 +15,14 @@ public class Workshop<T> implements Loadable<T> {
     }
 
     public boolean canLoadCar(T car) {
-        return false;
+        if(loadedCars.size() > carCapacity){
+            return true;
+        }else
+            return false;
     }
 
     public void unloadCar(T car) {
-
+        loadedCars.remove(car);
     }
 
 
