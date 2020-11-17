@@ -13,12 +13,12 @@ class TransporterTest {
     @BeforeEach
     public void init(){
         testCar = new Saab95();
-        testTruck = new Transporter();
+        testTruck = new Transporter(2);
     }
 
     @Test
     public void canLoadCarWorks(){
-        Transporter testTruck2 = new Transporter();
+        Transporter testTruck2 = new Transporter(2);
         Car testCar2 = new Saab95();
         Car testCar3 = new Volvo240();
 
