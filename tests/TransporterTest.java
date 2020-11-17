@@ -34,7 +34,7 @@ class TransporterTest {
         testCar.setPosition(pos1);
 
         testTruck2.setPosition(pos2);
-        assertFalse(testTruck.canLoadCar(testTruck2.hasATruck)); //transporter can't load another transporter
+        assertFalse(testTruck.canLoadCar(testTruck2.hasATruck)); //transporter can't load Scania
 
         testTruck.setRampUp();
         assertFalse(testTruck.canLoadCar(testCar)); //transporter can't load car when ramp is up
@@ -74,7 +74,7 @@ class TransporterTest {
     @Test
     public void carPositionIsCorrectWhenUnloaded(){
         testTruck.loadCar(testCar);
-        testTruck.unloadCar(testCar);
+        testTruck.unloadLastCar();
         double truckYPos = testTruck.getPosition().getY();
         double carYPos = testCar.getPosition().getY();
 
