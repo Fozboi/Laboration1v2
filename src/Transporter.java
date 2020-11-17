@@ -32,6 +32,16 @@ public class Transporter extends Car{
 
 
     @Override
+    public void move() {
+        hasATruck.move();
+        Point newPos = hasATruck.getPosition();
+
+        for(int i = 0; i < loadedCars.size(); i++){
+            loadedCars.get(i).setPosition(newPos);
+        }
+    }
+
+    @Override
     double speedFactor() {
         return hasATruck.speedFactor();
     }
