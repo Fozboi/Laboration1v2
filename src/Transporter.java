@@ -116,9 +116,10 @@ public class Transporter implements Loadable<Car>,Moveable{
         return hasATruck.speedFactor();
     }
 
+    @Override
     public Point getPosition(){return hasATruck.getPosition();}
+    @Override
     public void setPosition(Point newPos){ hasATruck.setPosition(newPos);}
-
     @Override
     public double getEnginePower() {return hasATruck.getEnginePower();}
     @Override
