@@ -21,8 +21,16 @@ public class Scania extends Car {
     }
 
     void setTrailerAngle(double newAngle){
-        if(newAngle <= 70 && newAngle >= 0 && getCurrentSpeed() == 0){
-            trailerAngle = newAngle;
+        if(newAngle <= 70 && newAngle >= 0){
+            if(getCurrentSpeed() == 0){
+                trailerAngle = newAngle;
+            }
+            else{
+                throw new IllegalStateException("Cannot raise trailer while car is moving");
+            }
+        }
+        else{
+            throw new IllegalArgumentException("Only angles between 0 and 70 allowed");
         }
     }
 
