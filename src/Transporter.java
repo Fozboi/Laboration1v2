@@ -5,7 +5,6 @@ public class Transporter extends Car implements Loadable<Car>{
     Scania hasATruck;
     int carCapacity;
     double pickupRange;
-
     private ArrayList<Car> loadedCars;
 
     public Transporter(int carCapacity){
@@ -30,7 +29,7 @@ public class Transporter extends Car implements Loadable<Car>{
         double xdif = car.getPosition().getX() - hasATruck.getPosition().getX();
         double ydif = car.getPosition().getY() - hasATruck.getPosition().getY();
 
-        if(xdif > pickupRange || ydif > pickupRange){
+        if(Math.abs(xdif) > pickupRange || Math.abs(ydif) > pickupRange){
             return false;
         } else if(car instanceof Transporter){
             return false;

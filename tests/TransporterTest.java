@@ -14,7 +14,7 @@ class TransporterTest {
     @BeforeEach
     public void init(){
         testCar = new Saab95();
-        testTruck = new Transporter(1);
+        testTruck = new Transporter(2);
     }
 
     @Test
@@ -29,6 +29,10 @@ class TransporterTest {
         testCar.setPosition(pos2);
         assertTrue(testTruck.canLoadCar(testCar)); //transporter can load car that complies to the requirements
 
+        testCar.setPosition(new Point(50,50));
+        assertFalse(testTruck.canLoadCar(testCar)); //transporter cannot load car out of range
+        testCar.setPosition(pos1);
+
         testTruck2.setPosition(pos2);
         assertFalse(testTruck.canLoadCar(testTruck2)); //transporter can't load another transporter
 
@@ -38,7 +42,10 @@ class TransporterTest {
 
         testCar2.setPosition(pos2);
         testTruck.loadCar(testCar);
+        testTruck.loadCar(testCar2);
         assertFalse(testTruck.canLoadCar(testCar2)); //transporter can't load car when 2 others are already on it
+
+
 
     }
 
@@ -67,16 +74,8 @@ class TransporterTest {
         testCar2.setPosition(pos2);
 
         testTruck.loadCar(testCar2);
-        System.out.println(testTruck.getLoadedCars().get(0).getModelName());
-        System.out.println(testTruck.getLoadedCars().size());
-
         testTruck.loadCar(testCar);
-        System.out.println(testTruck.getLoadedCars().get(0).getModelName());
-        System.out.println(testTruck.getLoadedCars().size());
-
-
         testTruck.unloadLastCar();
-        System.out.println(testTruck.getLoadedCars().size());
 
         assertTrue(testTruck.getLoadedCars().size() == 1);
     }
