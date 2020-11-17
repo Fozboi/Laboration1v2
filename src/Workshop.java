@@ -1,22 +1,24 @@
-import java.util.TreeMap;
+import java.util.ArrayList;
 
-public class Workshop implements Loadable {
+public class Workshop<T> implements Loadable<T> {
     int carCapacity;
-    private TreeMap<Integer, Car> loadedCars = new TreeMap<>();
+    private ArrayList<T> loadedCars = new ArrayList<>();
 
     public Workshop(int carCapacity){
         this.carCapacity = carCapacity;
     }
 
-    public void loadCar(Car car){
-
+    public void loadCar(T car){
+        if(canLoadCar(car)){
+            loadedCars.add(car);
+        }
     }
 
-    public boolean canLoadCar(Car car) {
-
+    public boolean canLoadCar(T car) {
+        return false;
     }
 
-    public void unloadCar(Car car) {
+    public void unloadCar(T car) {
 
     }
 

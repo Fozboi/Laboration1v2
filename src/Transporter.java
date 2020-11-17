@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.util.TreeMap;
 
-public class Transporter extends Car implements Loadable{
+public class Transporter extends Car implements Loadable<Car>{
     Scania hasATruck;
     int carCapacity;
     double pickupRange;
