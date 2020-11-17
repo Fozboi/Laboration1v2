@@ -34,7 +34,7 @@ class TransporterTest {
         testCar.setPosition(pos1);
 
         testTruck2.setPosition(pos2);
-        assertFalse(testTruck.canLoadCar(testTruck2)); //transporter can't load another transporter
+        assertFalse(testTruck.canLoadCar(testTruck2.hasATruck)); //transporter can't load another transporter
 
         testTruck.setRampUp();
         assertFalse(testTruck.canLoadCar(testCar)); //transporter can't load car when ramp is up

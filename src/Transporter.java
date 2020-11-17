@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Transporter extends Car implements Loadable<Car>{
+public class Transporter implements Loadable<Car>,Moveable{
     Scania hasATruck;
     int carCapacity;
     double pickupRange;
@@ -31,7 +31,7 @@ public class Transporter extends Car implements Loadable<Car>{
 
         if(Math.abs(xdif) > pickupRange || Math.abs(ydif) > pickupRange){
             return false;
-        } else if(car instanceof Transporter){
+        } else if(car instanceof Scania){
             return false;
         }else if(loadedCars.size() >= carCapacity){
             return false;
@@ -59,16 +59,16 @@ public class Transporter extends Car implements Loadable<Car>{
             int xIntPos = (int) hasATruck.getPosition().getX();
             int yIntPos = (int) hasATruck.getPosition().getY();
 
-            if(hasATruck.getDir() == NORTH){
+            if(hasATruck.getDir() == hasATruck.NORTH){
                 yIntPos += pickupRange;
             }
-            else if(hasATruck.getDir() == SOUTH){
+            else if(hasATruck.getDir() == hasATruck.SOUTH){
                 yIntPos += -pickupRange;
             }
-            else if(hasATruck.getDir() == WEST){
+            else if(hasATruck.getDir() == hasATruck.WEST){
                 xIntPos += pickupRange;
             }
-            else if(hasATruck.getDir() == EAST){
+            else if(hasATruck.getDir() == hasATruck.EAST){
                 xIntPos += -pickupRange;
             }
             Point newPos = new Point(xIntPos, yIntPos);
@@ -88,11 +88,19 @@ public class Transporter extends Car implements Loadable<Car>{
     }
 
     @Override
+    public void turnLeft() {
+        hasATruck.turnLeft();
+    }
+
+    @Override
+    public void turnRight() {
+        hasATruck.turnLeft();
+    }
+
     double speedFactor() {
         return hasATruck.speedFactor();
     }
 
-    public void setPosition(Point newPos){
-        hasATruck.setPosition(newPos);
-    }
+    public Point getPosition(){return hasATruck.getPosition();}
+    public void setPosition(Point newPos){ hasATruck.setPosition(newPos);}
 }
