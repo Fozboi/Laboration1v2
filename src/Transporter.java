@@ -97,6 +97,7 @@ public class Transporter implements Loadable<Car>,Moveable{
         hasATruck.turnLeft();
     }
 
+
     double speedFactor() {
         return hasATruck.speedFactor();
     }
@@ -116,11 +117,9 @@ public class Transporter implements Loadable<Car>,Moveable{
     public void startEngine(){hasATruck.startEngine();}
     @Override
     public void stopEngine(){hasATruck.stopEngine();}
-
     @Override
     public double getCurrentSpeed() {return hasATruck.getCurrentSpeed(); }
     @Override
     public void setCurrentSpeed(double newSpeed) {hasATruck.setCurrentSpeed(newSpeed);}
-
 
 }

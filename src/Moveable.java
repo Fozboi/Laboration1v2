@@ -9,12 +9,13 @@ interface Moveable{
     void turnRight();
     void gas(double amount);
     void brake(double amount);
+    void startEngine();
+    void stopEngine();
+
     Point getPosition();
     void setPosition(Point newPos);
     double getEnginePower();
     void setEnginePower(double enginePower);
-    void startEngine();
-    void stopEngine();
     double getCurrentSpeed();
     void setCurrentSpeed(double newSpeed);
 
