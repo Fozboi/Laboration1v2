@@ -18,5 +18,7 @@ interface Moveable{
     void setEnginePower(double enginePower);
     double getCurrentSpeed();
     void setCurrentSpeed(double newSpeed);
+    int getDir();
+    void setDir(int newDir);
 
 }

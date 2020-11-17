@@ -7,35 +7,62 @@ import java.lang.*;
  */
 public class CarGame extends JFrame{
     ImageIcon carIcon;
+    ImageIcon truckIcon;
 
     public static void main(String[] args){
         Car car = new Volvo240(); //skapa ny bil
+        Transporter truck = new Transporter(2);
+
         car.startEngine(); //starta bilen
+        truck.startEngine();
+
         CarGame map = new CarGame(car); //skapa ny karta
 
+        truck.setPosition(new Point(220,200));
 
-        for (int i = 0; i <= 500; i++){
-
-            car.gas(0.01); //GAS
-
-            if(i%40 == 1){
+        for (int i = 0; i <= 900; i++){
+            if(i%30 == 1)
                 car.turnLeft();
-            }//sväng vänster var tjugonde frame
+                car.brake(0.15);
+            if(i%40 == 1)
+                truck.turnLeft();
+                truck.brake(0.15);
 
-            if(i%65 == 1){
-                car.turnRight();
-            }//sväng höger var trettionde frame
+            car.gas(0.02);
+            truck.gas(0.01);
 
-            if(i%60 == 1){
-                car.brake(0.25);
+
+            if(truck.inRange(car) && !truck.getLoadedCars().contains(car) && i%175 == 1){
+                car.setCurrentSpeed(0);
+                truck.setCurrentSpeed(0);
+                truck.setRampDown();
+                truck.loadCar(car);
+                truck.setRampUp();
+                System.out.println("Pålastad");
             }
 
-            car.move(); //flytta bilen
-            JLabel newLabel = map.createLabel(car); //skapar ny bil-etikett
+            if(truck.getLoadedCars().size() != 0 && i%200 == 101){
+                car.setCurrentSpeed(0);
+                truck.setCurrentSpeed(0);
+                truck.setRampDown();
+                truck.unloadLastCar();
+                truck.setRampUp();
+                System.out.println("Avlastad");
+
+            }
+
+
+
+
+            car.move();
+            truck.move();
+
+            JLabel newCarLabel = map.createLabel(car); //skapar ny bil-etikett
+            JLabel newTruckLabel = map.createLabel(truck);
             map.getContentPane().removeAll(); //rensar fönstret (borde nog ta bort bara bilen specifikt)
-            map.add(newLabel); //lägger till nya bilen
+            map.add(newCarLabel); //lägger till nya bilen
+            map.add(newTruckLabel);
             map.repaint(); //uppdaterar fönstret
-            System.out.println(car.getCurrentSpeed());
             wait(17); //väntar 17 millisekunder = 60FPS
         }
     }
@@ -46,10 +73,6 @@ public class CarGame extends JFrame{
         getContentPane().setBackground(Color.green);
         setLocation(600,400);
         setLayout(null);
-
-        JLabel newLabel = createLabel(car);
-        add(newLabel);
-
         setVisible(true);
     }//konstruktor skapar ny karta med bil
 
@@ -74,6 +97,26 @@ public class CarGame extends JFrame{
         return carLabel;
     }//returnerar en etikett med bilen som gavs
 
+    public JLabel createLabel(Transporter inputTruck){
+        int xcoord = (int) Math.round(inputTruck.getPosition().getX());
+        int ycoord = (int) Math.round(inputTruck.getPosition().getY());
+
+        if(inputTruck.getDir() == Car.NORTH){
+            truckIcon = new ImageIcon("truckIconNORTH.png");
+        } else if(inputTruck.getDir()== Car.EAST){
+            truckIcon = new ImageIcon("truckIconEAST.png");
+        } else if(inputTruck.getDir() == Car.SOUTH){
+            truckIcon = new ImageIcon("truckIconSOUTH.png");
+        } else if(inputTruck.getDir() == Car.WEST){
+            truckIcon = new ImageIcon("truckIconWEST.png");
+        }
+
+        JLabel truckLabel = new JLabel("",truckIcon,JLabel.CENTER);
+        Dimension size = truckLabel.getPreferredSize();
+        truckLabel.setBounds(xcoord-size.width/2,ycoord-size.height/2,size.width,size.height);
+
+        return truckLabel;
+    }
 
 
     public static void wait(int ms)

@@ -17,7 +17,7 @@ public class Transporter implements Loadable<Car>,Moveable{
     public Transporter(int carCapacity){
         hasATruck = new Scania();
         this.carCapacity = carCapacity;
-        pickupRange = 10;
+        pickupRange = 30;
         loadedCars = new ArrayList<>(carCapacity);
     }
 
@@ -38,16 +38,25 @@ public class Transporter implements Loadable<Car>,Moveable{
      * @param car bilen som ska lastas
      */
     public boolean canLoadCar(Car car){
-        double xdif = car.getPosition().getX() - hasATruck.getPosition().getX();
-        double ydif = car.getPosition().getY() - hasATruck.getPosition().getY();
-
-        if(Math.abs(xdif) > pickupRange || Math.abs(ydif) > pickupRange){
+        if(!inRange(car)){
+            return false;
+        }else if(loadedCars.contains(car)){
             return false;
         } else if(car instanceof Scania){
             return false;
         }else if(loadedCars.size() >= carCapacity){
             return false;
         }else if(hasATruck.getTrailerAngle() != 70){
+            return false;
+        }else
+            return true;
+    }
+
+    public boolean inRange(Car car){
+        double xdif = car.getPosition().getX() - hasATruck.getPosition().getX();
+        double ydif = car.getPosition().getY() - hasATruck.getPosition().getY();
+
+        if(Math.abs(xdif) > pickupRange || Math.abs(ydif) > pickupRange){
             return false;
         }else
             return true;
@@ -102,6 +111,7 @@ public class Transporter implements Loadable<Car>,Moveable{
 
         for(int i = 0; i < loadedCars.size(); i++){
             loadedCars.get(i).setPosition(newPos);
+            loadedCars.get(i).setDir(hasATruck.getDir());
         }
     }
 
@@ -140,5 +150,9 @@ public class Transporter implements Loadable<Car>,Moveable{
     public double getCurrentSpeed() {return hasATruck.getCurrentSpeed(); }
     @Override
     public void setCurrentSpeed(double newSpeed) {hasATruck.setCurrentSpeed(newSpeed);}
+    @Override
+    public int getDir() {return hasATruck.getDir();}
+    @Override
+    public void setDir(int newDir) {hasATruck.setDir(newDir);}
 
 }
