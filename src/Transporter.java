@@ -1,13 +1,10 @@
 import java.awt.*;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.SortedMap;
 import java.util.TreeMap;
 
 public class Transporter extends Car{
     Scania hasATruck;
 
-    private SortedMap<Integer, Car> loadedCars = new TreeMap<Integer, Car>();
+    private TreeMap<Integer, Car> loadedCars = new TreeMap<Integer, Car>();
 
     public Transporter(){
         hasATruck = new Scania();
@@ -20,14 +17,23 @@ public class Transporter extends Car{
         hasATruck.setTrailerAngle(70);
     }
 
-
     boolean canLoadCar(){
-        Integer lastKey = loadedCars.lastKey();
+        int lastKey = loadedCars.lastKey();
+        double trailerAngle = hasATruck.getTrailerAngle();
 
-        if (lastKey < 2){
-            loadCar();
+        if (lastKey < 2 && trailerAngle == 70)
             return true;
-        } else return false;
+        else return false;
+    }
+
+    public void loadCar(){
+        if (canLoadCar()){
+            loadedCars.put(loadedCars.lastKey()+1,);
+        }
+    }
+
+    public void unLoadCar(){
+
     }
 
 
