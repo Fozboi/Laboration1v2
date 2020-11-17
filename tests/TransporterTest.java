@@ -80,4 +80,41 @@ class TransporterTest {
 
         assertTrue(testTruck.getLoadedCars().size() == 1);
     }
+
+    @Test
+    public void carPositionIsCorrectWhenUnloaded(){
+        testTruck.setRampDown();
+        Point pos1 = new Point(100,100);
+        Point pos2 = new Point(109,109);
+        testTruck.setPosition(pos1);
+        testCar.setPosition(pos2);
+
+        testTruck.loadCar(testCar);
+        testTruck.unloadCar(testCar);
+        double truckYPos = testTruck.getPosition().getY();
+        double carYPos = testCar.getPosition().getY();
+
+        assertTrue(truckYPos == carYPos-10); // pickupRange is 10 and dir is NORTH by default
+
+    }
+
+    @Test
+    public void moveMovesBothWhenACarIsLoaded(){
+        testTruck.setRampDown();
+        Point pos1 = new Point(100,100);
+        Point pos2 = new Point(109,109);
+        testTruck.setPosition(pos1);
+        testCar.setPosition(pos2);
+
+        testTruck.loadCar(testCar);
+        testTruck.setRampUp();
+        testTruck.setCurrentSpeed(1);
+        double truckYPosBefore = testTruck.getPosition().getY();
+        testTruck.move(); //should move both car and truck by -1 on the y-axis
+        double truckYPosAfter = testTruck.getPosition().getY();
+        double carYPosAfter = testTruck.getPosition().getY();
+        assertTrue(carYPosAfter == truckYPosAfter);
+        assertTrue(truckYPosAfter == truckYPosBefore-1);
+
+    }
 }
