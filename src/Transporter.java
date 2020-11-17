@@ -7,7 +7,6 @@ import java.util.TreeMap;
 public class Transporter extends Car{
     Scania hasATruck;
 
-    private boolean rampDown; //false by default
     private SortedMap<Integer, Car> loadedCars = new TreeMap<Integer, Car>();
 
     public Transporter(){
