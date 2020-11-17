@@ -1,11 +1,14 @@
 import java.awt.*;
+import java.util.Iterator;
+import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
 public class Transporter extends Car{
     Scania hasATruck;
 
-    private SortedMap<Integer, String> loadedCars = new TreeMap<Integer, String>();
+    private boolean rampDown; //false by default
+    private SortedMap<Integer, Car> loadedCars = new TreeMap<Integer, Car>();
 
     public Transporter(){
         hasATruck = new Scania();
@@ -20,11 +23,12 @@ public class Transporter extends Car{
 
 
     boolean canLoadCar(){
-        if (loadedCars < 2){ // max 2 cars on transport
-            loadedCars++;
+        Integer lastKey = loadedCars.lastKey();
+
+        if (lastKey < 2){
+            loadCar();
             return true;
-        }
-        else return false;
+        } else return false;
     }
 
 
