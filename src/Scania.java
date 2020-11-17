@@ -16,7 +16,7 @@ public class Scania extends Car {
             return getEnginePower() * 0.01;
         }
         else{
-            return 0;
+            throw new IllegalStateException("Cannot move while trailer is raised");
         }
     }
 
@@ -32,6 +32,14 @@ public class Scania extends Car {
         else{
             throw new IllegalArgumentException("Only angles between 0 and 70 allowed");
         }
+    }
+
+    public static void main(String[] args){
+        Scania bil = new Scania();
+        bil.setTrailerAngle(60);
+        bil.setTrailerAngle(0);
+        bil.gas(1);
+
     }
 
 
