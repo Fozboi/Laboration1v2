@@ -103,4 +103,19 @@ public class Transporter implements Loadable<Car>,Moveable{
 
     public Point getPosition(){return hasATruck.getPosition();}
     public void setPosition(Point newPos){ hasATruck.setPosition(newPos);}
+
+    @Override
+    public void gas(double amount){hasATruck.gas(amount);}
+    @Override
+    public void brake(double amount){hasATruck.brake(amount);}
+
+
+    public void startEngine(){hasATruck.startEngine();}
+    public void stopEngine(){hasATruck.stopEngine();}
+
+
+
+
+
+
 }
