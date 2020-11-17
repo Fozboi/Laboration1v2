@@ -10,7 +10,7 @@ public class Transporter extends Car{
 
     public Transporter(){
         hasATruck = new Scania();
-        carCapacity = 3;
+        carCapacity = 2;
         pickupRange = 10;
     }
 
@@ -39,7 +39,7 @@ public class Transporter extends Car{
 
     public void loadCar(Car car){
         if (canLoadCar(car)){
-            loadedCars.put(loadedCars.lastKey()+1,car);
+            loadedCars.put(loadedCars.size(),car);
         }
     }
 
