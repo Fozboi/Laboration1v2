@@ -15,5 +15,7 @@ interface Moveable{
     void setEnginePower(double enginePower);
     void startEngine();
     void stopEngine();
+    double getCurrentSpeed();
+    void setCurrentSpeed(double newSpeed);
 
 }

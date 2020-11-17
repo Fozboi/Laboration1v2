@@ -117,9 +117,10 @@ public class Transporter implements Loadable<Car>,Moveable{
     @Override
     public void stopEngine(){hasATruck.stopEngine();}
 
-
-
-
+    @Override
+    public double getCurrentSpeed() {return hasATruck.getCurrentSpeed(); }
+    @Override
+    public void setCurrentSpeed(double newSpeed) {hasATruck.setCurrentSpeed(newSpeed);}
 
 
 }
