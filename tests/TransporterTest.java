@@ -10,11 +10,16 @@ class TransporterTest {
 
     Saab95 testCar;
     Transporter testTruck;
+    Point pos1 = new Point(100,100);
+    Point pos2 = new Point(109,109);
 
     @BeforeEach
     public void init(){
         testCar = new Saab95();
         testTruck = new Transporter(2);
+        testTruck.setRampDown();
+        testTruck.setPosition(pos1);
+        testCar.setPosition(pos2);
     }
 
     @Test
@@ -22,11 +27,6 @@ class TransporterTest {
         Transporter testTruck2 = new Transporter(1);
         Car testCar2 = new Volvo240();
 
-        testTruck.setRampDown();
-        Point pos1 = new Point(100,100);
-        Point pos2 = new Point(109,109);
-        testTruck.setPosition(pos1);
-        testCar.setPosition(pos2);
         assertTrue(testTruck.canLoadCar(testCar)); //transporter can load car that complies to the requirements
 
         testCar.setPosition(new Point(50,50));
@@ -51,11 +51,6 @@ class TransporterTest {
 
     @Test
     public void loadCarWorks(){
-        testTruck.setRampDown();
-        Point pos1 = new Point(100,100);
-        Point pos2 = new Point(109,109);
-        testTruck.setPosition(pos1);
-        testCar.setPosition(pos2);
         testTruck.loadCar(testCar);
         ArrayList<Car> carlist = testTruck.getLoadedCars();
 
@@ -66,11 +61,6 @@ class TransporterTest {
     public void unloadLastCarWorks(){
         Car testCar2 = new Volvo240();
 
-        testTruck.setRampDown();
-        Point pos1 = new Point(100,100);
-        Point pos2 = new Point(109,109);
-        testTruck.setPosition(pos1);
-        testCar.setPosition(pos2);
         testCar2.setPosition(pos2);
 
         testTruck.loadCar(testCar2);
@@ -83,12 +73,6 @@ class TransporterTest {
 
     @Test
     public void carPositionIsCorrectWhenUnloaded(){
-        testTruck.setRampDown();
-        Point pos1 = new Point(100,100);
-        Point pos2 = new Point(109,109);
-        testTruck.setPosition(pos1);
-        testCar.setPosition(pos2);
-
         testTruck.loadCar(testCar);
         testTruck.unloadCar(testCar);
         double truckYPos = testTruck.getPosition().getY();
@@ -100,12 +84,6 @@ class TransporterTest {
 
     @Test
     public void moveMovesBothWhenACarIsLoaded(){
-        testTruck.setRampDown();
-        Point pos1 = new Point(100,100);
-        Point pos2 = new Point(109,109);
-        testTruck.setPosition(pos1);
-        testCar.setPosition(pos2);
-
         testTruck.loadCar(testCar);
         testTruck.setRampUp();
         testTruck.setCurrentSpeed(1);
@@ -113,8 +91,8 @@ class TransporterTest {
         testTruck.move(); //should move both car and truck by -1 on the y-axis
         double truckYPosAfter = testTruck.getPosition().getY();
         double carYPosAfter = testTruck.getPosition().getY();
+
         assertTrue(carYPosAfter == truckYPosAfter);
         assertTrue(truckYPosAfter == truckYPosBefore-1);
-
     }
 }
