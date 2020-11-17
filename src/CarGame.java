@@ -13,6 +13,7 @@ public class CarGame extends JFrame{
         car.startEngine(); //starta bilen
         CarGame map = new CarGame(car); //skapa ny karta
 
+
         for (int i = 0; i <= 500; i++){
 
             car.gas(0.01); //GAS

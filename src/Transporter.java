@@ -1,16 +1,16 @@
 import java.awt.*;
 import java.util.TreeMap;
 
-public class Transporter extends Car{
+public class Transporter extends Car implements Loadable{
     Scania hasATruck;
     int carCapacity;
     double pickupRange;
 
     private TreeMap<Integer, Car> loadedCars = new TreeMap<Integer, Car>();
 
-    public Transporter(){
+    public Transporter(int carCapacity){
         hasATruck = new Scania();
-        carCapacity = 2;
+        this.carCapacity = carCapacity;
         pickupRange = 10;
     }
 
@@ -21,7 +21,7 @@ public class Transporter extends Car{
         hasATruck.setTrailerAngle(70);
     }
 
-    boolean canLoadCar(Car car){
+    public boolean canLoadCar(Car car){
         double xdif = car.getPosition().getX() - hasATruck.getPosition().getX();
         double ydif = car.getPosition().getY() - hasATruck.getPosition().getY();
 
@@ -43,9 +43,13 @@ public class Transporter extends Car{
         }
     }
 
-    public void unloadCar(){
+    public void unloadLastCar(){
+        Car lastCar = loadedCars.get(loadedCars.lastKey());
+        unloadCar(lastCar);
+    }
+
+    public void unloadCar(Car car){
         if (loadedCars.size() > 0){
-            Car i = loadedCars.get(loadedCars.lastKey());
             loadedCars.remove(loadedCars.lastKey());
 
             int xIntPos = (int) hasATruck.getPosition().getX();
@@ -64,7 +68,7 @@ public class Transporter extends Car{
                 xIntPos += -pickupRange;
             }
             Point newPos = new Point(xIntPos, yIntPos);
-            i.setPosition(newPos);
+            car.setPosition(newPos);
         }
     }
 
