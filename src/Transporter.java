@@ -1,6 +1,9 @@
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * Lastbil Transporter, har ett flak med enbart två lägen.
+ */
 public class Transporter implements Loadable<Car>,Moveable{
     Scania hasATruck;
     int carCapacity;
@@ -24,7 +27,12 @@ public class Transporter implements Loadable<Car>,Moveable{
     void setRampDown(){
         hasATruck.setTrailerAngle(70);
     }
-
+    /**
+     * kollar om bilen kan lastas.
+     * Alltså att den är tillräckligt nöra transportern, att den inte är en lastbil,
+     * att transporterns flak inte är fullt, samt att flaket är i ned-positionen.
+     * @param car bilen som ska lastas
+     */
     public boolean canLoadCar(Car car){
         double xdif = car.getPosition().getX() - hasATruck.getPosition().getX();
         double ydif = car.getPosition().getY() - hasATruck.getPosition().getY();
@@ -51,7 +59,11 @@ public class Transporter implements Loadable<Car>,Moveable{
         Car lastCar = loadedCars.get(loadedCars.size()-1);
         unloadCar(lastCar);
     }
-
+    /**
+     * Tar bort bilen som lastas av från listan över lastade bilar,
+     * samt placerar den ett bestämt avstånd bakom transportern.
+     * @param car bilen som ska lastas av flaket.
+     */
     public void unloadCar(Car car){
         if (loadedCars.size() > 0){
             loadedCars.remove(car);
@@ -76,7 +88,9 @@ public class Transporter implements Loadable<Car>,Moveable{
         }
     }
 
-
+    /**
+     * Flyttar transportern, och ser till att alla lastade bilar flyttar med den.
+     */
     @Override
     public void move() {
         hasATruck.move();
