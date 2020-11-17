@@ -49,7 +49,7 @@ public class Transporter extends Car implements Loadable<Car>{
     }
 
     public void unloadLastCar(){
-        Car lastCar = loadedCars.get(loadedCars.size());
+        Car lastCar = loadedCars.get(loadedCars.size()-1);
         unloadCar(lastCar);
     }
 
