@@ -2,10 +2,11 @@ import java.util.ArrayList;
 
 public class Workshop<T> implements Loadable<T> {
     int carCapacity;
-    private ArrayList<T> loadedCars = new ArrayList<>();
+    private ArrayList<T> loadedCars;
 
     public Workshop(int carCapacity){
         this.carCapacity = carCapacity;
+        loadedCars = new ArrayList<>(carCapacity);
     }
 
     public void loadCar(T car){

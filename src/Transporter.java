@@ -1,18 +1,18 @@
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.TreeMap;
 
 public class Transporter extends Car implements Loadable<Car>{
     Scania hasATruck;
     int carCapacity;
     double pickupRange;
 
-    private ArrayList<Car> loadedCars = new ArrayList<Car>();
+    private ArrayList<Car> loadedCars;
 
     public Transporter(int carCapacity){
         hasATruck = new Scania();
         this.carCapacity = carCapacity;
         pickupRange = 10;
+        loadedCars = new ArrayList<>(carCapacity);
     }
 
     public ArrayList<Car> getLoadedCars(){

@@ -66,13 +66,18 @@ class TransporterTest {
         testCar.setPosition(pos2);
         testCar2.setPosition(pos2);
 
-        testTruck.loadCar(testCar);
         testTruck.loadCar(testCar2);
+        System.out.println(testTruck.getLoadedCars().get(0).getModelName());
+        System.out.println(testTruck.getLoadedCars().size());
+
+        testTruck.loadCar(testCar);
+        System.out.println(testTruck.getLoadedCars().get(0).getModelName());
+        System.out.println(testTruck.getLoadedCars().size());
+
+
         testTruck.unloadLastCar();
+        System.out.println(testTruck.getLoadedCars().size());
 
-        ArrayList<Car> carlist = testTruck.getLoadedCars();
-
-        assertTrue(carlist.size() == 1);
-        System.out.println(carlist);
+        assertTrue(testTruck.getLoadedCars().size() == 1);
     }
 }
