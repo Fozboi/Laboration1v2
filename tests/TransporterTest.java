@@ -78,7 +78,7 @@ class TransporterTest {
         double truckYPos = testTruck.getPosition().getY();
         double carYPos = testCar.getPosition().getY();
 
-        assertTrue(truckYPos == carYPos-10); // pickupRange is 10 and dir is NORTH by default
+        assertTrue(truckYPos == carYPos-testTruck.pickupRange); // pickupRange is 10 and dir is NORTH by default
 
     }
 
