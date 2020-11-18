@@ -3,7 +3,7 @@ import java.awt.*;
 /**
  * Lastbil Scania, har ett flak med en vinkel
  */
-public class Scania extends Car {
+public class Scania extends Truck {
     private double trailerAngle;
 
     public Scania(){

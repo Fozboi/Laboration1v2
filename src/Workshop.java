@@ -4,7 +4,7 @@ import java.util.ArrayList;
  * Verkstad för bilar, implementerar Loadable
  * @param <T> typvariabel, beskriver vilken typ av bilar som accepteras av verkstaden
  */
-public class Workshop<T> implements Loadable<T> {
+public class Workshop<T extends Car> implements Loadable<T> {
     int carCapacity;
     private ArrayList<T> loadedCars;
 
@@ -19,8 +19,8 @@ public class Workshop<T> implements Loadable<T> {
     /**
      * Lastar bil
      */
-    public void loadCar(T car){
-        if(canLoadCar(car)){
+    public void loadObject(T car){
+        if(canLoadObject(car)){
             loadedCars.add(car);
         }
     }
@@ -28,14 +28,14 @@ public class Workshop<T> implements Loadable<T> {
     /**
      * Kollar om det finns plats i verkstaden
      */
-    public boolean canLoadCar(T car) {
+    public boolean canLoadObject(T car) {
         if(loadedCars.size() > carCapacity){
             return true;
         }else
             return false;
     }
 
-    public void unloadCar(T car) {
+    public void unloadObject(T car) {
         loadedCars.remove(car);
     }
 

@@ -5,7 +5,7 @@ import java.util.ArrayList;
  * Lastbil Transporter, har ett flak med enbart två lägen.
  */
 public class Transporter implements Loadable<Car>,Moveable{
-    Scania hasATruck;
+    Truck hasATruck;
     int carCapacity;
     double pickupRange;
     private ArrayList<Car> loadedCars;
@@ -37,12 +37,12 @@ public class Transporter implements Loadable<Car>,Moveable{
      * att transporterns flak inte är fullt, samt att flaket är i ned-positionen.
      * @param car bilen som ska lastas
      */
-    public boolean canLoadCar(Car car){
+    public boolean canLoadObject(Car car){
         if(!inRange(car)){
             return false;
         }else if(loadedCars.contains(car)){
             return false;
-        } else if(car instanceof Scania){
+        } else if(car instanceof Truck){
             return false;
         }else if(loadedCars.size() >= carCapacity){
             return false;
@@ -62,22 +62,22 @@ public class Transporter implements Loadable<Car>,Moveable{
             return true;
     }
 
-    public void loadCar(Car car){
-        if (canLoadCar(car)){
+    public void loadObject(Car car){
+        if (canLoadObject(car)){
             loadedCars.add(car);
         }
     }
 
     public void unloadLastCar(){
         Car lastCar = loadedCars.get(loadedCars.size()-1);
-        unloadCar(lastCar);
+        unloadObject(lastCar);
     }
     /**
      * Tar bort bilen som lastas av från listan över lastade bilar,
      * samt placerar den ett bestämt avstånd bakom transportern.
      * @param car bilen som ska lastas av flaket.
      */
-    public void unloadCar(Car car){
+    public void unloadObject(Car car){
         if (loadedCars.size() > 0){
             loadedCars.remove(car);
 

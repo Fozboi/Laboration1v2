@@ -37,7 +37,7 @@ public class CarGame extends JFrame{
                 car.setCurrentSpeed(0);
                 truck.setCurrentSpeed(0);
                 truck.setRampDown();
-                truck.loadCar(car);
+                truck.loadObject(car);
                 truck.setRampUp();
                 System.out.println("Pålastad");
             }
