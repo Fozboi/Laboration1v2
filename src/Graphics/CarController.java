@@ -63,7 +63,7 @@ public class CarController {
                         || (y <= 0 && carDir == Car.NORTH)
                         || (y >= mapHeight && carDir == Car.SOUTH)  ){
 
-                    System.out.println("hej");
+                    System.out.println("hit wall");
                     car.stopEngine();
                     car.turnLeft();
                     car.turnLeft();
