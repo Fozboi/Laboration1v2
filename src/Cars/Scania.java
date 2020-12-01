@@ -12,7 +12,7 @@ public class Scania extends Truck {
         setNrDoors(2);
         setColor(Color.white);
         setEnginePower(90);
-        setModelName("Cars.Scania");
+        setModelName("Scania");
         stopEngine();
     }
 

@@ -14,7 +14,7 @@ public class Volvo240 extends Car{
         setNrDoors(4);
         setColor(Color.black);
         setEnginePower(100);
-        setModelName("Cars.Volvo240");
+        setModelName("Volvo240");
         stopEngine();
     }
     

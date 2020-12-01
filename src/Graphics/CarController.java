@@ -1,9 +1,12 @@
 package Graphics;
 
 import Cars.Car;
+import Cars.Saab95;
+import Cars.Scania;
 import Cars.Volvo240;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -35,6 +38,9 @@ public class CarController {
         CarController cc = new CarController();
 
         cc.cars.add(new Volvo240());
+        cc.cars.add(new Saab95());
+        cc.cars.add(new Scania());
+        cc.cars.get(1).setPosition(new Point(100,100));
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
@@ -58,27 +64,24 @@ public class CarController {
                 int carDir = car.getDir();
 
                 if(        (x <= 0 && carDir == Car.WEST)
-                        || (x >= mapWidth  - frame.drawPanel.volvoImage.getWidth() && carDir == Car.EAST)
+                        || (x >= mapWidth  - frame.drawPanel.carImageMap.get(car).getWidth() && carDir == Car.EAST)
                         || (y <= 0 && carDir == Car.NORTH)
-                        || (y >= mapHeight - frame.drawPanel.volvoImage.getHeight() && carDir == Car.SOUTH)  ){
+                        || (y >= mapHeight - frame.drawPanel.carImageMap.get(car).getHeight() && carDir == Car.SOUTH)  ){
 
-                    System.out.println("hit wall");
-                    System.out.println(car.getCurrentSpeed());
                     car.stopEngine();
                     car.turnLeft();
                     car.turnLeft();
                     car.startEngine();
                 }
-                System.out.println(car.getCurrentSpeed());
+                System.out.println(car.getPosition().getX());
+
+
                 car.move();
-                x = (int) Math.round(car.getPosition().getX());
-                y = (int) Math.round(car.getPosition().getY());
 
-
-                frame.drawPanel.moveit(x, y);
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
             }
+            System.out.println();
 
         }
     }
@@ -99,6 +102,9 @@ public class CarController {
             car.brake(brake);
         }
     }
+
+    public ArrayList<Car> getCars(){return cars;}
+
 
 
 }
