@@ -118,7 +118,10 @@ public abstract class Car implements Moveable{
     public void setModelName(String modelName){this.modelName = modelName;}
     public String getModelName(){return modelName;}
 
-    public void setPosition(Point position){this.position = position;}
+    public void setPosition(Point position){
+        this.position = position;
+        xcoord = position.getX();
+        ycoord = position.getY();}
     public Point getPosition(){return position;}
 
 
