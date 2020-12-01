@@ -109,7 +109,11 @@ public class CarController {
     }
 
     void setTurboOn() {
-        
+        frame.drawPanel.carImageMap.forEach((k,v) -> {
+            if(k instanceof Saab95){
+                ((Saab95) k).setTurboOn();
+            }
+        });
     }
 
     void setTurboOff() {
