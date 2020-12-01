@@ -1,3 +1,7 @@
+import Cars.Car;
+import Cars.Saab95;
+import Cars.Transporter;
+import Cars.Volvo240;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -34,7 +38,7 @@ class TransporterTest {
         testCar.setPosition(pos1);
 
         testTruck2.setPosition(pos2);
-        assertFalse(testTruck.canLoadObject(testTruck2.hasATruck)); //transporter can't load Scania
+        assertFalse(testTruck.canLoadObject(testTruck2.getTruck())); //transporter can't load Cars.Scania
 
         testTruck.setRampUp();
         assertFalse(testTruck.canLoadObject(testCar)); //transporter can't load car when ramp is up
@@ -78,7 +82,7 @@ class TransporterTest {
         double truckYPos = testTruck.getPosition().getY();
         double carYPos = testCar.getPosition().getY();
 
-        assertTrue(truckYPos == carYPos-testTruck.pickupRange); // pickupRange is 10 and dir is NORTH by default
+        assertTrue(truckYPos == carYPos-testTruck.getPickupRange()); // pickupRange is 10 and dir is NORTH by default
 
     }
 

@@ -1,17 +1,19 @@
+package Cars;
+
 import java.awt.*;
 
 /**
- * Superklass Car, håller reda på en bils riktning, position och hastighet
+ * Superklass Cars.Car, håller reda på en bils riktning, position och hastighet
  * Innehåller samtliga bilars funktioner men vissa override:as av subklasser
  */
 public abstract class Car implements Moveable{
     private Point position = new Point(200,200);
 
     private int dir;
-    static final int NORTH = 0;
-    static final int EAST = 1;
-    static final int SOUTH = 2;
-    static final int WEST = 3;
+    public static final int NORTH = 0;
+    public static final int EAST = 1;
+    public static final int SOUTH = 2;
+    public static final int WEST = 3;
 
     private int nrDoors; // Number of doors on the car
     private double enginePower; // Engine power of the car

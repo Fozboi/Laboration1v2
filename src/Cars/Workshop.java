@@ -1,7 +1,9 @@
+package Cars;
+
 import java.util.ArrayList;
 
 /**
- * Verkstad för bilar, implementerar Loadable
+ * Verkstad för bilar, implementerar Cars.Loadable
  * @param <T> typvariabel, beskriver vilken typ av bilar som accepteras av verkstaden
  */
 public class Workshop<T extends Car> implements Loadable<T> {

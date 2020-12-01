@@ -1,3 +1,4 @@
+import Cars.Scania;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

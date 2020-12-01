@@ -1,7 +1,9 @@
+package Cars;
+
 import java.awt.*;
 
 /**
- * Lastbil Scania, har ett flak med en vinkel
+ * Lastbil Cars.Scania, har ett flak med en vinkel
  */
 public class Scania extends Truck {
     private double trailerAngle;
@@ -10,7 +12,7 @@ public class Scania extends Truck {
         setNrDoors(2);
         setColor(Color.white);
         setEnginePower(90);
-        setModelName("Scania");
+        setModelName("Cars.Scania");
         stopEngine();
     }
 

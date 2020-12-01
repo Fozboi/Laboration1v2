@@ -1,3 +1,5 @@
+package Cars;
+
 /**
  * Samlar metoder för att lasta bilar
  */

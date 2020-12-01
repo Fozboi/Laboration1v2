@@ -1,7 +1,9 @@
+package Cars;
+
 import java.awt.*;
 
 /**
- * subklass Volvo240 ärver car, är trimmad
+ * subklass Cars.Volvo240 ärver car, är trimmad
  */
 public class Volvo240 extends Car{
 
@@ -12,7 +14,7 @@ public class Volvo240 extends Car{
         setNrDoors(4);
         setColor(Color.black);
         setEnginePower(100);
-        setModelName("Volvo240");
+        setModelName("Cars.Volvo240");
         stopEngine();
     }
     

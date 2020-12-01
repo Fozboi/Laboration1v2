@@ -1,3 +1,7 @@
+package Graphics;
+
+import Cars.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.lang.*;

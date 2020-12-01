@@ -1,7 +1,9 @@
+package Cars;
+
 import java.awt.*;
 
 /**
- * subklass Saab95 ärver Car, har en turbo
+ * subklass Cars.Saab95 ärver Cars.Car, har en turbo
  */
 public class Saab95 extends Car{
 
@@ -13,7 +15,7 @@ public class Saab95 extends Car{
         setColor(Color.red);
         setEnginePower(125);
 	    setTurboOff();
-        setModelName("Saab95");
+        setModelName("Cars.Saab95");
         stopEngine();
     }
     

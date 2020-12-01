@@ -1,8 +1,10 @@
+package Cars;
+
 import java.awt.*;
 import java.util.ArrayList;
 
 /**
- * Lastbil Transporter, har ett flak med enbart två lägen.
+ * Lastbil Cars.Transporter, har ett flak med enbart två lägen.
  */
 public class Transporter implements Loadable<Car>,Moveable{
     Truck hasATruck;
@@ -11,7 +13,7 @@ public class Transporter implements Loadable<Car>,Moveable{
     private ArrayList<Car> loadedCars;
 
     /**
-     * konstruktor, skapar en Scania-lastbil som via specifikationsarv ger transporter rörelsemöjligheter
+     * konstruktor, skapar en Cars.Scania-lastbil som via specifikationsarv ger transporter rörelsemöjligheter
      * @param carCapacity maxkapacitet antal bilar
      */
     public Transporter(int carCapacity){
@@ -25,10 +27,10 @@ public class Transporter implements Loadable<Car>,Moveable{
         return loadedCars;
     }
 
-    void setRampUp(){
+    public void setRampUp(){
         hasATruck.setTrailerAngle(0);
     }
-    void setRampDown(){
+    public void setRampDown(){
         hasATruck.setTrailerAngle(70);
     }
     /**
@@ -154,5 +156,7 @@ public class Transporter implements Loadable<Car>,Moveable{
     public int getDir() {return hasATruck.getDir();}
     @Override
     public void setDir(int newDir) {hasATruck.setDir(newDir);}
+    public Truck getTruck(){ return hasATruck; }
+    public double getPickupRange(){return pickupRange;}
 
 }
