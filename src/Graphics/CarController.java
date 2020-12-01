@@ -31,8 +31,6 @@ public class CarController {
     // A list of cars, modify if needed
     ArrayList<Car> cars = new ArrayList<>();
 
-    //methods:
-
     public static void main(String[] args) {
         // Instance of this class
         CarController cc = new CarController();
@@ -109,6 +107,38 @@ public class CarController {
             car.brake(brake);
         }
     }
+
+    void setTurboOn() {
+        
+    }
+
+    void setTurboOff() {
+
+    }
+
+    void liftBed() {
+
+    }
+
+    void lowerBed() {
+
+    }
+
+    void startEngine() {
+        for (Car car : cars
+        ) {
+            car.startEngine();
+        }
+    }
+
+    void stopEngine() {
+        for (Car car : cars
+        ) {
+            car.stopEngine();
+        }
+    }
+
+
 
     public ArrayList<Car> getCars(){return cars;}
 
