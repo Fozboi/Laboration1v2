@@ -117,15 +117,27 @@ public class CarController {
     }
 
     void setTurboOff() {
-
+        frame.drawPanel.carImageMap.forEach((k,v) -> {
+            if(k instanceof Saab95){
+                ((Saab95) k).setTurboOff();
+            }
+        });
     }
 
     void liftBed() {
-
+        frame.drawPanel.carImageMap.forEach((k,v) -> {
+            if(k instanceof Scania){
+                ((Scania) k).setTrailerAngle(70);
+            }
+        });
     }
 
     void lowerBed() {
-
+        frame.drawPanel.carImageMap.forEach((k,v) -> {
+            if(k instanceof Scania){
+                ((Scania) k).setTrailerAngle(0);
+            }
+        });
     }
 
     void startEngine() {
