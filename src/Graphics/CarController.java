@@ -53,8 +53,10 @@ public class CarController {
 
 
             for (Car car : cars) {
-                int x = (int) Math.round(car.getPosition().getX());
-                int y = (int) Math.round(car.getPosition().getY());
+                System.out.println(car.getPosition().getY());
+                System.out.println(Math.ceil(car.getPosition().getY()));
+                int x = (int) Math.floor(car.getPosition().getX());
+                int y = (int) Math.ceil(car.getPosition().getY());
                 int carDir = car.getDir();
 
 
@@ -64,12 +66,14 @@ public class CarController {
                         || (y >= mapHeight && carDir == Car.SOUTH)  ){
 
                     System.out.println("hit wall");
+                    System.out.println(car.getCurrentSpeed());
                     car.stopEngine();
                     car.turnLeft();
                     car.turnLeft();
                     car.startEngine();
                 }
-
+                System.out.println(car.getCurrentSpeed());
+                System.out.println();
                 car.move();
                 x = (int) Math.round(car.getPosition().getX());
                 y = (int) Math.round(car.getPosition().getY());

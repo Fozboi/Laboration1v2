@@ -41,7 +41,7 @@ public abstract class Car implements Moveable{
         else if(dir == EAST){
             xIntPos += +currentSpeed;
         }
-        position = new Point(xIntPos,yIntPos);
+        position.move(xIntPos,yIntPos);
     } //metoden tar bilens position och ändrar den till en ny position baserad på bilens rikting och hastighet
 
     public void turnLeft(){
