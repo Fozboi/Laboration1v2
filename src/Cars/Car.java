@@ -7,7 +7,9 @@ import java.awt.*;
  * Innehåller samtliga bilars funktioner men vissa override:as av subklasser
  */
 public abstract class Car implements Moveable{
-    private Point position = new Point(200,200);
+    private Point position = new Point(0,0);
+    private double xcoord;
+    private double ycoord;
 
     private int dir;
     public static final int NORTH = 0;
@@ -26,22 +28,19 @@ public abstract class Car implements Moveable{
      * metoden move, tar en position för en bil och utifrån rikting förskjuter den längs axel
      */
     public void move(){
-        int xIntPos = (int) position.getX();
-        int yIntPos = (int) position.getY();
-
         if(dir == NORTH){
-            yIntPos += -currentSpeed;
+            ycoord += -currentSpeed;
         }
         else if(dir == SOUTH){
-            yIntPos += currentSpeed;
+            ycoord += currentSpeed;
         }
         else if(dir == WEST){
-            xIntPos += -currentSpeed;
+            xcoord += -currentSpeed;
         }
         else if(dir == EAST){
-            xIntPos += +currentSpeed;
+            xcoord += +currentSpeed;
         }
-        position.move(xIntPos,yIntPos);
+        position = new Point((int) xcoord,(int) ycoord);
     } //metoden tar bilens position och ändrar den till en ny position baserad på bilens rikting och hastighet
 
     public void turnLeft(){
