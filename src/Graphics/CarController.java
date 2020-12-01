@@ -59,11 +59,10 @@ public class CarController {
                 int y = (int) Math.ceil(car.getPosition().getY());
                 int carDir = car.getDir();
 
-
                 if(        (x <= 0 && carDir == Car.WEST)
-                        || (x >= mapWidth && carDir == Car.EAST)
+                        || (x >= mapWidth  - frame.drawPanel.volvoImage.getWidth() && carDir == Car.EAST)
                         || (y <= 0 && carDir == Car.NORTH)
-                        || (y >= mapHeight && carDir == Car.SOUTH)  ){
+                        || (y >= mapHeight - frame.drawPanel.volvoImage.getHeight() && carDir == Car.SOUTH)  ){
 
                     System.out.println("hit wall");
                     System.out.println(car.getCurrentSpeed());
