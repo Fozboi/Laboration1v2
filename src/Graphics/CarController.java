@@ -48,14 +48,38 @@ public class CarController {
     * */
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
+            int mapWidth = frame.drawPanel.getWidth();
+            int mapHeight = frame.drawPanel.getHeight();
+
+
             for (Car car : cars) {
-                car.move();
                 int x = (int) Math.round(car.getPosition().getX());
                 int y = (int) Math.round(car.getPosition().getY());
+                int carDir = car.getDir();
+
+
+                if(        (x <= 0 && carDir == Car.WEST)
+                        || (x >= mapWidth && carDir == Car.EAST)
+                        || (y <= 0 && carDir == Car.NORTH)
+                        || (y >= mapHeight && carDir == Car.SOUTH)  ){
+
+                    System.out.println("hej");
+                    car.stopEngine();
+                    car.turnLeft();
+                    car.turnLeft();
+                    car.startEngine();
+                }
+
+                car.move();
+                x = (int) Math.round(car.getPosition().getX());
+                y = (int) Math.round(car.getPosition().getY());
+
+
                 frame.drawPanel.moveit(x, y);
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
             }
+
         }
     }
 
@@ -67,4 +91,14 @@ public class CarController {
             car.gas(gas);
         }
     }
+
+    void brake(int amount) {
+        double brake = ((double) amount) / 100;
+        for (Car car : cars
+        ) {
+            car.brake(brake);
+        }
+    }
+
+
 }
