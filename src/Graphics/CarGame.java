@@ -87,7 +87,7 @@ public class CarGame extends JFrame{
         int ycoord = (int) Math.round(inputCar.getPosition().getY());
 
         if(inputCar.getDir() == Car.NORTH){
-            carIcon = new ImageIcon("carIconNORTH.png");
+            carIcon = new ImageIcon("pics/Volvo240.jpg");
         } else if(inputCar.getDir()== Car.EAST){
             carIcon = new ImageIcon("carIconEAST.png");
         } else if(inputCar.getDir() == Car.SOUTH){
