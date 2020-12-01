@@ -53,10 +53,8 @@ public class CarController {
 
 
             for (Car car : cars) {
-                System.out.println(car.getPosition().getY());
-                System.out.println(Math.ceil(car.getPosition().getY()));
-                int x = (int) Math.floor(car.getPosition().getX());
-                int y = (int) Math.ceil(car.getPosition().getY());
+                int x = (int) car.getPosition().getX();
+                int y = (int) car.getPosition().getY();
                 int carDir = car.getDir();
 
                 if(        (x <= 0 && carDir == Car.WEST)
@@ -72,7 +70,6 @@ public class CarController {
                     car.startEngine();
                 }
                 System.out.println(car.getCurrentSpeed());
-                System.out.println();
                 car.move();
                 x = (int) Math.round(car.getPosition().getX());
                 y = (int) Math.round(car.getPosition().getY());
