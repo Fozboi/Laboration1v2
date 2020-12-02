@@ -31,7 +31,8 @@ public class DrawPanel extends JPanel{
 
                 // Rememember to rightclick src New -> Package -> name: pics -> MOVE *.jpg to pics.
                 // if you are starting in IntelliJ.
-                carImageMap.put(car,ImageIO.read(new File("pics/" + car.getModelName() + ".jpg")));
+
+                carImageMap.put(car,ImageIO.read(new File("pics/" + car.getClass().getName() + ".jpg")));
             } catch (IOException ex)
             {
                 ex.printStackTrace();
