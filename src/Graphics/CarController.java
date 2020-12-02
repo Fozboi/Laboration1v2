@@ -82,6 +82,7 @@ public class CarController {
 
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
+
             }
         }
     }
@@ -104,35 +105,35 @@ public class CarController {
     }
 
     void setTurboOn() {
-        frame.drawPanel.carImageMap.forEach((k,v) -> {
-            if(k instanceof Saab95){
-                ((Saab95) k).setTurboOn();
+        for(Car car : cars){
+            if(car instanceof Saab95){
+                ((Saab95) car).setTurboOn();
             }
-        });
+        }
     }
 
     void setTurboOff() {
-        frame.drawPanel.carImageMap.forEach((k,v) -> {
-            if(k instanceof Saab95){
-                ((Saab95) k).setTurboOff();
+        for(Car car : cars){
+            if(car instanceof Saab95){
+                ((Saab95) car).setTurboOff();
             }
-        });
+        }
     }
 
     void liftBed() {
-        frame.drawPanel.carImageMap.forEach((k,v) -> {
-            if(k instanceof Scania){
-                ((Scania) k).setTrailerAngle(70);
+        for(Car car : cars){
+            if(car instanceof Scania){
+                ((Scania) car).setTrailerAngle(70);
             }
-        });
+        }
     }
 
     void lowerBed() {
-        frame.drawPanel.carImageMap.forEach((k,v) -> {
-            if(k instanceof Scania){
-                ((Scania) k).setTrailerAngle(0);
+        for(Car car : cars){
+            if(car instanceof Scania){
+                ((Scania) car).setTrailerAngle(0);
             }
-        });
+        }
     }
 
     void startEngine() {
@@ -148,7 +149,6 @@ public class CarController {
             car.stopEngine();
         }
     }
-
 
 
     public ArrayList<Car> getCars(){return cars;}
