@@ -16,7 +16,7 @@ public class Scania extends Truck {
         stopEngine();
     }
 
-    public double speedFactor(){
+    double speedFactor(){
         if(trailerAngle == 0){
             return getEnginePower() * 0.01;
         }
