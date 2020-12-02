@@ -77,17 +77,12 @@ public class CarController {
                     car.turnLeft();
                     car.startEngine();
                 }
-                System.out.println(car.getPosition().getX());
-
 
                 car.move();
-                System.out.println(car.getPosition().getX());
 
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
             }
-            System.out.println();
-
         }
     }
 

@@ -26,15 +26,15 @@ public class CarGame extends JFrame{
         truck.setPosition(new Point(370,350));
 
         for (int i = 0; i <= 900; i++){
-            if(i%30 == 1)
+            if(i%90 == 1)
                 car.turnLeft();
                 car.brake(0.15);
-            if(i%40 == 1)
+            if(i%120 == 1)
                 truck.turnLeft();
                 truck.brake(0.15);
 
-            car.gas(0.02);
-            truck.gas(0.01);
+            car.gas(0.1);
+            truck.gas(0.1);
 
 
             if(truck.inRange(car) && !truck.getLoadedCars().contains(car) && i%175 == 1){
@@ -68,7 +68,7 @@ public class CarGame extends JFrame{
             map.add(newCarLabel); //lägger till nya bilen
             map.add(newTruckLabel);
             map.repaint(); //uppdaterar fönstret
-            wait(17); //väntar 17 millisekunder = 60FPS
+            wait(5); //väntar 17 millisekunder = 60FPS
         }
         System.out.println("run over");
     }
@@ -87,7 +87,7 @@ public class CarGame extends JFrame{
         int ycoord = (int) Math.round(inputCar.getPosition().getY());
 
         if(inputCar.getDir() == Car.NORTH){
-            carIcon = new ImageIcon("pics/Volvo240.jpg");
+            carIcon = new ImageIcon("carIconNORTH.png");
         } else if(inputCar.getDir()== Car.EAST){
             carIcon = new ImageIcon("carIconEAST.png");
         } else if(inputCar.getDir() == Car.SOUTH){
