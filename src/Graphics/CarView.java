@@ -56,7 +56,7 @@ public class CarView extends JFrame{
 
     // Sets everything in place and fits everything
     // TODO: Take a good look and make sure you understand how these methods and components work
-    private void initComponents(String title) {
+    public void initComponents(String title) {
 
         this.setTitle(title);
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));

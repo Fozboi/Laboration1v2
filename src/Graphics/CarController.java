@@ -12,6 +12,7 @@ public class CarController {
     CarModel carModel;
     CarView carView;
 
+
     public final int delay = 50;
     public Timer timer = new Timer(delay, new TimerListener());
 
@@ -130,7 +131,9 @@ public class CarController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 carModel.addCar();
+                carView.drawPanel = new DrawPanel(carView.drawPanel.getWidth(),carView.drawPanel.getHeight(), carModel.cars);
             }
+
         });
     }
 

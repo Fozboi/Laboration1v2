@@ -110,10 +110,11 @@ public class CarModel {
                 newCar = new Scania();
 
             newCar.setPosition(new Point(0, nrCars*100));
+            cars.add(newCar);
         }else {
             System.out.println("fullt");
         }
-        System.out.println("ijhasd0");
+        System.out.println("addCar");
 
 
 
