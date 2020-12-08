@@ -12,16 +12,11 @@ import java.util.ArrayList;
 
 public class CarModel {
 
-    CarView frame;
     // A list of cars, modify if needed
     ArrayList<Car> cars = new ArrayList<>();
 
     public CarModel(ArrayList<Car> carsList){
         cars = carsList;
-
-    }
-
-    public CarModel(){
 
     }
 
