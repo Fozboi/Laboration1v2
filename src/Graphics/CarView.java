@@ -54,7 +54,6 @@ public class CarView extends JFrame{
     private void initComponents(String title) {
 
         this.setTitle(title);
-        this.setPreferredSize(new Dimension(X,Y));
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
         this.add(drawPanel);
@@ -102,7 +101,10 @@ public class CarView extends JFrame{
         this.add(stopButton);
 
         speedometer = new Speedometer(carM);
+
         this.add(speedometer);
+
+        this.setPreferredSize(new Dimension(X,Y+speedometer.getPreferredSize().height));
 
 
         // Make the frame pack all it's components by respecting the sizes if possible.
