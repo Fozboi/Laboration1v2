@@ -19,9 +19,13 @@ public class CarView extends JFrame{
     private static final int X = 800;
     private static final int Y = 800;
 
+    // The controller member
+    CarModel carM;
+
     DrawPanel drawPanel;
 
     JPanel controlPanel = new JPanel();
+    Speedometer speedometer;
 
     JPanel gasPanel = new JPanel();
     JSpinner gasSpinner = new JSpinner();
@@ -40,6 +44,7 @@ public class CarView extends JFrame{
 
     // Constructor
     public CarView(String framename, CarModel cc){
+        this.carM = cc;
         drawPanel = new DrawPanel(X, Y-240,cc.getCars());
         initComponents(framename);
     }
@@ -95,6 +100,9 @@ public class CarView extends JFrame{
         stopButton.setForeground(Color.black);
         stopButton.setPreferredSize(new Dimension(X/5-15,200));
         this.add(stopButton);
+
+        speedometer = new Speedometer(carM);
+        this.add(speedometer);
 
 
         // Make the frame pack all it's components by respecting the sizes if possible.

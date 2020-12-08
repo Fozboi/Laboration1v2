@@ -47,7 +47,7 @@ public class CarController {
                 car.move();
             }
             // repaint() calls the paintComponent method of the panel
-            carView.drawPanel.repaint();
+            carView.repaint();
 
         }
     }
