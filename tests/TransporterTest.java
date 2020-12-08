@@ -1,6 +1,6 @@
 import Cars.Car;
 import Cars.Saab95;
-import Cars.Transporter;
+import Loaders.Transporter;
 import Cars.Volvo240;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

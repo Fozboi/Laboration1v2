@@ -50,6 +50,8 @@ public class DrawPanel extends JPanel{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        carImageMap.forEach((k,v) -> g.drawImage(v,(int) k.getPosition().getX(),(int) k.getPosition().getY(),null));
+        carImageMap.forEach((k,v) -> {
+            g.drawImage(v, (int) k.getPosition().getX(), (int) k.getPosition().getY(), null);
+        });
     }
 }

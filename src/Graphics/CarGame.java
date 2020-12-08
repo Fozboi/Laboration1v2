@@ -1,6 +1,7 @@
 package Graphics;
 
 import Cars.*;
+import Loaders.Transporter;
 
 import javax.swing.*;
 import java.awt.*;
