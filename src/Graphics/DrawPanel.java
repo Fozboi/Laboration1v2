@@ -1,6 +1,6 @@
 package Graphics;
 
-import Cars.Car;
+import Cars.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
