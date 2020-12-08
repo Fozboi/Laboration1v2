@@ -34,6 +34,7 @@ public class CarController {
         cc.carView = new CarView("CarSim 2.0", cc.carModel);
 
         cc.timer.start();
+        cc.initButtons();
 
     }
 
@@ -50,7 +51,7 @@ public class CarController {
 
         }
     }
-    
+
     public boolean hitWall(Car car){
         int mapWidth = carView.drawPanel.getWidth();
         int mapHeight = carView.drawPanel.getHeight();
@@ -66,6 +67,64 @@ public class CarController {
             return true;
         }
         return false;
+    }
+
+    private void initButtons(){
+        carView.gasButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carModel.gas(carView.getGasAmount());
+            }
+        });
+
+        carView.brakeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carModel.brake(carView.getGasAmount());
+            }
+        });
+
+        carView.turboOnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carModel.setTurboOn();
+            }
+        });
+
+        carView.turboOffButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carModel.setTurboOff();
+            }
+        });
+
+        carView.liftBedButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carModel.liftBed();
+            }
+        });
+
+        carView.lowerBedButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carModel.lowerBed();
+            }
+        });
+
+        carView.startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carModel.startEngine();
+            }
+        });
+
+        carView.stopButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carModel.stopEngine();
+            }
+        });
     }
 
 
