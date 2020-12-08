@@ -35,43 +35,39 @@ public class CarController {
 
         cc.timer.start();
 
-
-
-
-
-
-
     }
 
     public class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            int mapWidth = carView.drawPanel.getWidth();
-            int mapHeight = carView.drawPanel.getHeight();
-
-
             for (Car car : carModel.cars) {
-                int x = (int) car.getPosition().getX();
-                int y = (int) car.getPosition().getY();
-                int carDir = car.getDir();
-
-                if(        (x <= 0 && carDir == Car.WEST)
-                        || (x >= mapWidth  - carView.drawPanel.carImageMap.get(car).getWidth() && carDir == Car.EAST)
-                        || (y <= 0 && carDir == Car.NORTH)
-                        || (y >= mapHeight - carView.drawPanel.carImageMap.get(car).getHeight() && carDir == Car.SOUTH)  ){
-
-                    car.stopEngine();
-                    car.turnLeft();
-                    car.turnLeft();
-                    car.startEngine();
+                if (hitWall(car)) {
+                    carModel.breakTurn(car);
                 }
-
                 car.move();
-
-                // repaint() calls the paintComponent method of the panel
-                carView.drawPanel.repaint();
-
             }
+            // repaint() calls the paintComponent method of the panel
+            carView.drawPanel.repaint();
+
         }
     }
+    
+    public boolean hitWall(Car car){
+        int mapWidth = carView.drawPanel.getWidth();
+        int mapHeight = carView.drawPanel.getHeight();
+
+        int x = (int) car.getPosition().getX();
+        int y = (int) car.getPosition().getY();
+        int carDir = car.getDir();
+
+        if(        (x <= 0 && carDir == Car.WEST)
+                || (x >= mapWidth  - carView.drawPanel.carImageMap.get(car).getWidth() && carDir == Car.EAST)
+                || (y <= 0 && carDir == Car.NORTH)
+                || (y >= mapHeight - carView.drawPanel.carImageMap.get(car).getHeight() && carDir == Car.SOUTH)  ){
+            return true;
+        }
+        return false;
+    }
+
+
 
 }
