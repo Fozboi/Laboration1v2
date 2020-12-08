@@ -39,10 +39,6 @@ public class DrawPanel extends JPanel{
                 ex.printStackTrace();
             }
         }
-        System.out.println(carImageMap.size());
-
-
-
     }
 
     // This method is called each time the panel updates/refreshes/repaints itself
