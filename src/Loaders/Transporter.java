@@ -4,7 +4,6 @@ import Cars.Car;
 import Cars.Moveable;
 import Cars.Scania;
 import Cars.Truck;
-import Loaders.Loadable;
 
 import java.awt.*;
 import java.util.ArrayList;
