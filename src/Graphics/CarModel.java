@@ -30,7 +30,6 @@ public class CarModel {
 
     public CarModel(ArrayList<Car> carsList){
         cars = carsList;
-        timer.start();
 
     }
 

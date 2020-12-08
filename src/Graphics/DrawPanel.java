@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Observable;
 
 // This panel represent the animated part of the view with the car images.
 
@@ -49,5 +50,7 @@ public class DrawPanel extends JPanel{
         carImageMap.forEach((k,v) -> {
             g.drawImage(v, (int) k.getPosition().getX(), (int) k.getPosition().getY(), null);
         });
+
+
     }
 }
