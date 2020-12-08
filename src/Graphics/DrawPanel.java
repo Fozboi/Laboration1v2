@@ -24,12 +24,7 @@ public class DrawPanel extends JPanel{
         this.setBackground(Color.green);
 
         for(Car car : cars){
-            try {
-                carImageMap.put(car,ImageIO.read(new File("pics/" + car.getModelName() + ".jpg")));
-            } catch (IOException ex)
-            {
-                ex.printStackTrace();
-            }
+            addCar(car);
         }
     }
 
@@ -40,7 +35,20 @@ public class DrawPanel extends JPanel{
         carImageMap.forEach((k,v) -> {
             g.drawImage(v, (int) k.getPosition().getX(), (int) k.getPosition().getY(), null);
         });
+    }
 
+    private BufferedImage getImage(Car car){
+        BufferedImage image = null;
+        try {
+            image = ImageIO.read(new File("pics/" + car.getModelName() + ".jpg"));
+        } catch (IOException ex)
+        {
+            ex.printStackTrace();
+        }
+        return image;
+    }
 
+    public void addCar(Car car){
+        carImageMap.put(car,getImage(car));
     }
 }

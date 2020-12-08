@@ -19,14 +19,13 @@ public class CarView extends JFrame{
     private static final int X = 800;
     private static final int Y = 800;
 
-    // The controller member
-    CarModel carM;
+    String title;
 
+    CarModel carM;
     DrawPanel drawPanel;
 
     JPanel controlPanel = new JPanel();
     JPanel bigButtonPanel = new JPanel();
-
     Speedometer speedometer;
 
     JPanel gasPanel = new JPanel();
@@ -51,18 +50,46 @@ public class CarView extends JFrame{
     public CarView(String framename, CarModel cc){
         this.carM = cc;
         drawPanel = new DrawPanel(X, Y-240,cc.getCars());
-        initComponents(framename);
+        title = framename;
+        initComponents();
     }
 
     // Sets everything in place and fits everything
     // TODO: Take a good look and make sure you understand how these methods and components work
-    public void initComponents(String title) {
+    public void initComponents() {
+        initFrame();
 
+        initDrawPanel();
+
+        initGasPanel();
+
+        initControlPanel();
+
+        initBigButtonPanel();
+
+        initSpeedometer();
+
+        this.setPreferredSize(new Dimension(X,Y+speedometer.getPreferredSize().height));
+        this.pack();
+
+        this.setVisible(true);
+
+    }
+
+    private void initDrawPanel(){
+        this.add(drawPanel);
+    }
+
+    public void initFrame(){
         this.setTitle(title);
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        this.add(drawPanel);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+    }
 
+    private void initGasPanel(){
         SpinnerModel spinnerModel =
                 new SpinnerNumberModel(0, //initial value
                         0, //min
@@ -80,7 +107,9 @@ public class CarView extends JFrame{
         gasPanel.add(gasSpinner, BorderLayout.PAGE_END);
 
         this.add(gasPanel);
+    }
 
+    private void initControlPanel(){
         controlPanel.setLayout(new GridLayout(2,4));
 
         controlPanel.add(gasButton, 0);
@@ -89,12 +118,14 @@ public class CarView extends JFrame{
         controlPanel.add(brakeButton, 3);
         controlPanel.add(turboOffButton, 4);
         controlPanel.add(lowerBedButton, 5);
+
         controlPanel.setPreferredSize(new Dimension((X/2)+4, 200));
-        this.add(controlPanel);
         controlPanel.setBackground(Color.CYAN);
+        this.add(controlPanel);
+    }
 
+    private void initBigButtonPanel(){
         bigButtonPanel.setLayout(new GridLayout(2,2));
-
 
         startButton.setBackground(Color.blue);
         startButton.setForeground(Color.green);
@@ -118,28 +149,11 @@ public class CarView extends JFrame{
         bigButtonPanel.add(removeCarButton);
 
         this.add(bigButtonPanel);
+    }
 
+    public void initSpeedometer(){
         speedometer = new Speedometer(carM);
-
         this.add(speedometer);
-
-
-
-
-        this.setPreferredSize(new Dimension(X,Y+speedometer.getPreferredSize().height));
-
-
-        // Make the frame pack all it's components by respecting the sizes if possible.
-        this.pack();
-
-        // Get the computer screen resolution
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        // Center the frame
-        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-        // Make the frame visible
-        this.setVisible(true);
-        // Make sure the frame exits when "x" is pressed
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public int getGasAmount(){return gasAmount;}

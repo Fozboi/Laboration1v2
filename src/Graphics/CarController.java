@@ -35,7 +35,7 @@ public class CarController {
         cc.carView = new CarView("CarSim 2.0", cc.carModel);
 
         cc.timer.start();
-        cc.initButtons();
+        cc.initButtonFunctionality();
 
     }
 
@@ -70,7 +70,7 @@ public class CarController {
         return false;
     }
 
-    private void initButtons(){
+    private void initButtonFunctionality(){
         carView.gasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -131,7 +131,7 @@ public class CarController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 carModel.addCar();
-                carView.drawPanel = new DrawPanel(carView.drawPanel.getWidth(),carView.drawPanel.getHeight(), carModel.cars);
+                carView.drawPanel.addCar(carModel.cars.get(carModel.cars.size()-1));
             }
 
         });

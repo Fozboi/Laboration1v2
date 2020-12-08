@@ -109,7 +109,7 @@ public class CarModel {
             } else
                 newCar = new Scania();
 
-            newCar.setPosition(new Point(0, nrCars*100));
+            newCar.setPosition(new Point(nrCars*100,0));
             cars.add(newCar);
         }else {
             System.out.println("fullt");
