@@ -24,6 +24,7 @@ public class Speedometer extends JLabel{
         for(Car car : carModel.cars){
             labelText = labelText + car.getModelName() + " : " + car.getCurrentSpeed() + "km/h\n";
         }
+        this.setText(labelText);
         this.setVisible(true);
     }
 
