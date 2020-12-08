@@ -125,6 +125,13 @@ public class CarController {
                 carModel.stopEngine();
             }
         });
+
+        carView.addCarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carModel.addCar();
+            }
+        });
     }
 
 

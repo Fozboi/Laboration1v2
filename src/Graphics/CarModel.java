@@ -2,6 +2,7 @@ package Graphics;
 
 import Cars.*;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 /*
@@ -93,5 +94,29 @@ public class CarModel {
     public ArrayList<Car> getCars(){return cars;}
 
 
+    public void addCar() {
+        double x = Math.random()*3;
+        int randx = (int) x;
 
+        int nrCars = cars.size();
+        Car newCar;
+
+        if(nrCars < 10){
+            if(randx == 0){
+                newCar = new Saab95();
+            } else if (randx == 1){
+                newCar = new Volvo240();
+            } else
+                newCar = new Scania();
+
+            newCar.setPosition(new Point(0, nrCars*100));
+        }else {
+            System.out.println("fullt");
+        }
+        System.out.println("ijhasd0");
+
+
+
+
+    }
 }

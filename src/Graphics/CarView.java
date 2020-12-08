@@ -25,6 +25,8 @@ public class CarView extends JFrame{
     DrawPanel drawPanel;
 
     JPanel controlPanel = new JPanel();
+    JPanel bigButtonPanel = new JPanel();
+
     Speedometer speedometer;
 
     JPanel gasPanel = new JPanel();
@@ -41,6 +43,9 @@ public class CarView extends JFrame{
 
     JButton startButton = new JButton("Start all cars");
     JButton stopButton = new JButton("Stop all cars");
+
+    JButton addCarButton = new JButton("Add car");
+    JButton removeCarButton = new JButton("Remove car");
 
     // Constructor
     public CarView(String framename, CarModel cc){
@@ -88,21 +93,38 @@ public class CarView extends JFrame{
         this.add(controlPanel);
         controlPanel.setBackground(Color.CYAN);
 
+        bigButtonPanel.setLayout(new GridLayout(2,2));
+
 
         startButton.setBackground(Color.blue);
         startButton.setForeground(Color.green);
-        startButton.setPreferredSize(new Dimension(X/5-15,200));
-        this.add(startButton);
+        startButton.setPreferredSize(new Dimension(X/5-15,100));
+        bigButtonPanel.add(startButton);
 
 
         stopButton.setBackground(Color.red);
         stopButton.setForeground(Color.black);
-        stopButton.setPreferredSize(new Dimension(X/5-15,200));
-        this.add(stopButton);
+        stopButton.setPreferredSize(new Dimension(X/5-15,100));
+        bigButtonPanel.add(stopButton);
+
+        addCarButton.setBackground(Color.green);
+        addCarButton.setForeground(Color.black);
+        addCarButton.setPreferredSize(new Dimension(X/5-15,100));
+        bigButtonPanel.add(addCarButton);
+
+        removeCarButton.setBackground(Color.orange);
+        removeCarButton.setForeground(Color.black);
+        removeCarButton.setPreferredSize(new Dimension(X/5-15,100));
+        bigButtonPanel.add(removeCarButton);
+
+        this.add(bigButtonPanel);
 
         speedometer = new Speedometer(carM);
 
         this.add(speedometer);
+
+
+
 
         this.setPreferredSize(new Dimension(X,Y+speedometer.getPreferredSize().height));
 
