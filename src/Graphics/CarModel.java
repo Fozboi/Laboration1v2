@@ -18,7 +18,6 @@ public class CarModel {
 
     public CarModel(ArrayList<Car> carsList){
         cars = carsList;
-
     }
 
     public void breakTurn(Car car){
@@ -94,30 +93,34 @@ public class CarModel {
     public ArrayList<Car> getCars(){return cars;}
 
 
-    public void addCar() {
-        double x = Math.random()*3;
-        int randx = (int) x;
+    public void addCar(Car inputCar) {
+        Boolean found = false;
 
-        int nrCars = cars.size();
-        Car newCar;
+        for(int i = 0; i <= 9; i++){
 
-        if(nrCars < 10){
-            if(randx == 0){
-                newCar = new Saab95();
-            } else if (randx == 1){
-                newCar = new Volvo240();
-            } else
-                newCar = new Scania();
+            for(Car car : cars){
+                if(car.getPosition().getX() == i*100){
+                    break;
+                }else if(car == cars.get(cars.size()-1)){
+                    found = true;
+                }
+            }
 
-            newCar.setPosition(new Point(nrCars*100,0));
-            cars.add(newCar);
-        }else {
-            System.out.println("fullt");
+            if(found){
+                inputCar.setPosition(new Point(i*100,0));
+                break;
+            }
         }
-        System.out.println("addCar");
 
+        if(!found){
+            System.out.println("No free space!");
+        }else{
+            cars.add(inputCar);
+        }
 
+    }
 
-
+    public void removeCar(Car car) {
+        cars.remove(car);
     }
 }

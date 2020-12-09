@@ -48,7 +48,7 @@ public class DrawPanel extends JPanel{
         return image;
     }
 
-    public void addCar(Car car){
-        carImageMap.put(car,getImage(car));
-    }
+    public void addCar(Car car){ carImageMap.put(car,getImage(car));}
+
+    public void removeCar(Car car) { carImageMap.remove(car);}
 }

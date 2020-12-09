@@ -4,8 +4,6 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * This class represents the full view of the MVC pattern of your car simulator.
@@ -27,8 +25,9 @@ public class CarView extends JFrame{
     JPanel controlPanel = new JPanel();
     JPanel bigButtonPanel = new JPanel();
     Speedometer speedometer;
+    JTextField carModelField;
 
-    JPanel gasPanel = new JPanel();
+    JPanel inputPanel = new JPanel();
     JSpinner gasSpinner = new JSpinner();
     int gasAmount = 0;
     JLabel gasLabel = new JLabel("Amount of gas");
@@ -61,7 +60,7 @@ public class CarView extends JFrame{
 
         initDrawPanel();
 
-        initGasPanel();
+        initInputPanel();
 
         initControlPanel();
 
@@ -89,7 +88,7 @@ public class CarView extends JFrame{
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
     }
 
-    private void initGasPanel(){
+    private void initInputPanel(){
         SpinnerModel spinnerModel =
                 new SpinnerNumberModel(0, //initial value
                         0, //min
@@ -102,11 +101,18 @@ public class CarView extends JFrame{
             }
         });
 
-        gasPanel.setLayout(new BorderLayout());
-        gasPanel.add(gasLabel, BorderLayout.PAGE_START);
-        gasPanel.add(gasSpinner, BorderLayout.PAGE_END);
+        inputPanel.setLayout(new GridLayout(4,1));
 
-        this.add(gasPanel);
+        inputPanel.add(gasLabel, 0);
+        inputPanel.add(gasSpinner, 1);
+
+        JLabel carModelText = new JLabel("Bilmodell:");
+        carModelField = new JTextField("");
+
+        inputPanel.add(carModelText,2);
+        inputPanel.add(carModelField, 3);
+
+        this.add(inputPanel);
     }
 
     private void initControlPanel(){

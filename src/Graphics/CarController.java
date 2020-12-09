@@ -37,11 +37,14 @@ public class CarController {
         cc.timer.start();
         cc.initButtonFunctionality();
 
+        String string = "Saab95";
+
     }
 
     public class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             for (Car car : carModel.cars) {
+
                 if (hitWall(car)) {
                     carModel.breakTurn(car);
                 }
@@ -130,11 +133,45 @@ public class CarController {
         carView.addCarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carModel.addCar();
+                carModel.addCar(stringToCar(carView.carModelField.getText()));
                 carView.drawPanel.addCar(carModel.cars.get(carModel.cars.size()-1));
             }
 
         });
+
+        carView.removeCarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                for(int i = carModel.cars.size()-1; i >= 0; i--){
+                    if(carModel.cars.get(i).getModelName().equals(carView.carModelField.getText())){
+
+                        carView.drawPanel.removeCar(carModel.cars.get(i));
+                        carModel.removeCar(carModel.cars.get(i));
+
+                        break;
+                    }
+                    if(i == 0){
+                        System.out.println("Ingen sådan bil finns");
+                    }
+                }
+            }
+
+        });
+
+    }
+
+    public Car stringToCar(String carName){
+        Car newCar = null;
+
+        try{
+            Class carClass = Class.forName("Cars." + carName);
+            newCar = (Car) carClass.getConstructor().newInstance();
+
+        }catch(Exception e){
+            System.out.println(e.toString());
+        }
+        return newCar;
     }
 
 
