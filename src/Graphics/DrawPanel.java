@@ -33,6 +33,7 @@ public class DrawPanel extends JPanel{
         carImageMap.forEach((k,v) -> g.drawImage(v, (int) k.getPosition().getX(), (int) k.getPosition().getY(), null));
     }
 
+    //reads the image belonging to the input car and returns it
     private BufferedImage getImage(Car car){
         BufferedImage image = null;
         try {

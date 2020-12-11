@@ -18,6 +18,7 @@ public class CarModel {
     // A list of cars, modify if needed
     private ArrayList<Car> cars = new ArrayList<>(10);
 
+    //vänder bilen 180 grader och återställer dess hastighet
     public void breakTurn(Car car){
         car.stopEngine();
         car.turnLeft();
@@ -89,6 +90,7 @@ public class CarModel {
 
     public ArrayList<Car> getCars(){return cars;}
 
+    //lägger till en bil om det finns färre än 10 bilar samt en ledig plats för en ny bil
     public void addCar(Car inputCar) {
         Boolean found = false;
 
@@ -123,6 +125,8 @@ public class CarModel {
         cars.remove(car);
     }
 
+    //kollar om det finns en sorts bil som matchar input-strängen
+    //och omvandlar den isåfall till en instans av den bilsorten
     public Car stringToCar(String carName){
         Car newCar = null;
 

@@ -1,7 +1,9 @@
 package Cars;
 
 import java.awt.*;
-
+/**
+ * Samlar rörelse-metoder
+ */
 public interface IMoveable {
     void move();
     void turnLeft();

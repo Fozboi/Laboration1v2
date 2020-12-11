@@ -21,6 +21,7 @@ public class Speedometer extends JLabel{
 
     private static final DecimalFormat df = new DecimalFormat("0.0");
 
+    //returns a text label with the car model followed by the current speed
     private void setText(){
         String labelText = "";
 

@@ -76,6 +76,7 @@ public class CarView extends JFrame{
         this.add(drawPanel);
     }
 
+    //initialiserar fönstret 
     public void initFrame(){
         this.setTitle(title);
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
@@ -86,6 +87,7 @@ public class CarView extends JFrame{
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
     }
 
+    //initialiserar panelen för användarinput
     private void initInputPanel(){
         SpinnerModel spinnerModel =
                 new SpinnerNumberModel(0, //initial value
@@ -113,6 +115,7 @@ public class CarView extends JFrame{
         this.add(inputPanel);
     }
 
+    //iitialiserar panelen för kontrollknapparna
     private void initControlPanel(){
         controlPanel.setLayout(new GridLayout(2,4));
 
@@ -128,6 +131,7 @@ public class CarView extends JFrame{
         this.add(controlPanel);
     }
 
+    //intialiserar panelen för de större kontrollknapparna
     private void initBigButtonPanel(){
         bigButtonPanel.setLayout(new GridLayout(2,2));
 

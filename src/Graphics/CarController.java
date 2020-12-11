@@ -29,8 +29,8 @@ public class CarController {
         cc.timer.start();
         cc.initButtonFunctionality();
     }
-
-    private class TimerListener implements ActionListener {
+    //kollar om någon bil krockar med en vägg och vänder den isåfall
+    public class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             for (Car car : carModel.getCars()) {
 
@@ -60,7 +60,7 @@ public class CarController {
         }
         return false;
     }
-
+    //initialiserar alla knappar i UI
     private void initButtonFunctionality(){
         carView.gasButton.addActionListener(new ActionListener() {
             @Override
@@ -118,6 +118,7 @@ public class CarController {
             }
         });
 
+        //metoden lägger till en bil ifall det finns färre än 10
         carView.addCarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -156,6 +157,7 @@ public class CarController {
         });
     }
 
+    //går igenom cars och omplacerar bilarna så de har rätt distans till varandra
     private void fitXCarPanel(){
         int x = 0;
         for(Car car : carModel.getCars()){

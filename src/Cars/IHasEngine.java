@@ -1,6 +1,6 @@
 package Cars;
 /**
- * Samlar rörelse-metoder
+ * Samlar motor-metoder
  */
 public interface IHasEngine {
     void gas(double amount);
