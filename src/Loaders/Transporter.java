@@ -104,7 +104,6 @@ public class Transporter implements Loadable<Car>, IHasEngine, IMoveable,IHasTra
             car.setPosition(newPos);
         }
     }
-
     /**
      * Flyttar transportern, och ser till att alla lastade bilar flyttar med den.
      */
@@ -123,17 +122,13 @@ public class Transporter implements Loadable<Car>, IHasEngine, IMoveable,IHasTra
     public void turnLeft() {
         hasATruck.turnLeft();
     }
-
     @Override
     public void turnRight() {
         hasATruck.turnLeft();
     }
-
-
     double speedFactor() {
         return hasATruck.speedFactor();
     }
-
     @Override
     public Point getPosition(){return hasATruck.getPosition();}
     @Override

@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 // This panel represent the animated part of the view with the car images.
-
 public class DrawPanel extends JPanel{
     HashMap<Car,BufferedImage> carImageMap = new HashMap<>();
 
@@ -31,9 +30,7 @@ public class DrawPanel extends JPanel{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        carImageMap.forEach((k,v) -> {
-            g.drawImage(v, (int) k.getPosition().getX(), (int) k.getPosition().getY(), null);
-        });
+        carImageMap.forEach((k,v) -> g.drawImage(v, (int) k.getPosition().getX(), (int) k.getPosition().getY(), null));
     }
 
     private BufferedImage getImage(Car car){
@@ -48,6 +45,5 @@ public class DrawPanel extends JPanel{
     }
 
     public void addCar(Car car){ carImageMap.put(car,getImage(car));}
-
     public void removeCar(Car car) { carImageMap.remove(car);}
 }

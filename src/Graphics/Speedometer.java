@@ -19,7 +19,7 @@ public class Speedometer extends JLabel{
         setText();
     }
 
-    private static DecimalFormat df = new DecimalFormat("0.0");
+    private static final DecimalFormat df = new DecimalFormat("0.0");
 
     private void setText(){
         String labelText = "";
