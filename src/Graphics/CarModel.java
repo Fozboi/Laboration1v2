@@ -16,7 +16,7 @@ public class CarModel {
 
     public final int carDistance = 100;
     // A list of cars, modify if needed
-    ArrayList<Car> cars = new ArrayList<>(10);
+    private ArrayList<Car> cars = new ArrayList<>(10);
 
     public void breakTurn(Car car){
         car.stopEngine();
@@ -25,7 +25,7 @@ public class CarModel {
         car.startEngine();
     }
 
-    void gas(int amount) {
+    public void gas(int amount) {
         double gas = ((double) amount) / 100;
         for (Car car : cars
                 ) {
@@ -33,7 +33,7 @@ public class CarModel {
         }
     }
 
-    void brake(int amount) {
+    public void brake(int amount) {
         double brake = ((double) amount) / 100;
         for (Car car : cars
         ) {
@@ -41,7 +41,7 @@ public class CarModel {
         }
     }
 
-    <T extends IHasTurbo> void setTurboOn() {
+    public <T extends IHasTurbo> void setTurboOn() {
         for(Car car : cars){
             try{
                 ((T) car).setTurboOn();
@@ -49,7 +49,7 @@ public class CarModel {
         }
     }
 
-    <T extends IHasTurbo> void setTurboOff() {
+    public <T extends IHasTurbo> void setTurboOff() {
         for(Car car : cars){
             try{
                 ((T) car).setTurboOff();
@@ -57,7 +57,7 @@ public class CarModel {
         }
     }
 
-    <T extends IHasTrailer>void liftBed(){
+    public <T extends IHasTrailer>void liftBed(){
         for(Car car : cars){
             try{
                 ((T) car).setTrailerUp();
@@ -65,7 +65,7 @@ public class CarModel {
         }
     }
 
-    <T extends IHasTrailer>void lowerBed(){
+    public <T extends IHasTrailer>void lowerBed(){
         for(Car car : cars){
             try{
                 ((T) car).setTrailerDown();
@@ -73,14 +73,14 @@ public class CarModel {
         }
     }
 
-    void startEngine() {
+    public void startEngine() {
         for (Car car : cars
         ) {
             car.startEngine();
         }
     }
 
-    void stopEngine() {
+    public void stopEngine() {
         for (Car car : cars
         ) {
             car.stopEngine();

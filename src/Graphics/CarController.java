@@ -8,11 +8,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CarController {
-    CarModel carModel;
-    CarView carView;
+    private CarModel carModel;
+    private CarView carView;
 
-    public final int delay = 50;
-    public Timer timer = new Timer(delay, new TimerListener());
+    private final int delay = 50;
+    private Timer timer = new Timer(delay, new TimerListener());
 
     public static void main(String[] args) {
         CarController cc = new CarController();
@@ -30,9 +30,9 @@ public class CarController {
         cc.initButtonFunctionality();
     }
 
-    public class TimerListener implements ActionListener {
+    private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            for (Car car : carModel.cars) {
+            for (Car car : carModel.getCars()) {
 
                 if (hitWall(car)) {
                     carModel.breakTurn(car);
@@ -44,7 +44,7 @@ public class CarController {
         }
     }
 
-    public boolean hitWall(Car car){
+    private boolean hitWall(Car car){
         int mapWidth = carView.drawPanel.getWidth();
         int mapHeight = carView.drawPanel.getHeight();
 
@@ -121,9 +121,9 @@ public class CarController {
         carView.addCarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(carModel.cars.size() < 10){
+                if(carModel.getCars().size() < 10){
                     carModel.addCar(carModel.stringToCar(carView.carModelField.getText()));
-                    carView.drawPanel.addCar(carModel.cars.get(carModel.cars.size()-1));
+                    carView.drawPanel.addCar(carModel.getCars().get(carModel.getCars().size()-1));
                     fitXCarPanel();
                 }else{
                     throw new IllegalStateException("No more space");
@@ -135,14 +135,14 @@ public class CarController {
         carView.removeCarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(carModel.cars.size() == 0){
+                if(carModel.getCars().size() == 0){
                     throw new IllegalStateException("No cars exist");
                 }else{
-                    for(int i = carModel.cars.size()-1; i >= 0; i--){
-                        if(carModel.cars.get(i).getModelName().equals(carView.carModelField.getText())){
+                    for(int i = carModel.getCars().size()-1; i >= 0; i--){
+                        if(carModel.getCars().get(i).getModelName().equals(carView.carModelField.getText())){
 
-                            carView.drawPanel.removeCar(carModel.cars.get(i));
-                            carModel.removeCar(carModel.cars.get(i));
+                            carView.drawPanel.removeCar(carModel.getCars().get(i));
+                            carModel.removeCar(carModel.getCars().get(i));
 
                             break;
                         }
@@ -158,7 +158,7 @@ public class CarController {
 
     private void fitXCarPanel(){
         int x = 0;
-        for(Car car : carModel.cars){
+        for(Car car : carModel.getCars()){
             if(car.getPosition().getX() > x){
                 x = (int) car.getPosition().getX();
             }

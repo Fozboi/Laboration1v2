@@ -7,7 +7,7 @@ import java.awt.*;
 import java.text.DecimalFormat;
 
 public class Speedometer extends JLabel{
-    CarModel carModel;
+    private CarModel carModel;
 
     public Speedometer(CarModel carModel){
         this.carModel = carModel;
@@ -24,7 +24,7 @@ public class Speedometer extends JLabel{
     private void setText(){
         String labelText = "";
 
-        for(Car car : carModel.cars){
+        for(Car car : carModel.getCars()){
             labelText = labelText + car.getModelName() + " : " + df.format(car.getCurrentSpeed()) + "    |    ";
         }
 
