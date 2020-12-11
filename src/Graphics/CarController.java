@@ -158,7 +158,7 @@ public class CarController {
                         break;
                     }
                     if(i == 0){
-                        System.out.println("Ingen sådan bil finns");
+                        throw new IllegalStateException("No such car exists");
                     }
                 }
                 fitXCarPanel();
@@ -178,13 +178,11 @@ public class CarController {
         x += carModel.carDistance;
 
         if(x > carView.getX()){
-            System.out.println("Make bigger");
             carView.drawPanel.setPreferredSize(new Dimension(x,carView.drawPanel.getHeight()));
             carView.setPreferredSize(new Dimension(x,carView.getHeight()));
 
             carView.pack();
         }else if(x <= carView.getX()){
-            System.out.println("Set normal");
             carView.drawPanel.setPreferredSize(new Dimension(carView.getX(),carView.drawPanel.getHeight()));
             carView.setPreferredSize(new Dimension(carView.getX(),carView.getHeight()));
 
