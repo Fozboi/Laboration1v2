@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 public class CarModel {
 
+    public final int carDistance = 100;
     // A list of cars, modify if needed
     ArrayList<Car> cars = new ArrayList<>();
 
@@ -99,7 +100,7 @@ public class CarModel {
         for(int i = 0; i <= 9; i++){
 
             for(Car car : cars){
-                if(car.getPosition().getX() == i*100){
+                if(car.getPosition().getX() == i*carDistance){
                     break;
                 }else if(car == cars.get(cars.size()-1)){
                     found = true;
@@ -107,7 +108,7 @@ public class CarModel {
             }
 
             if(found){
-                inputCar.setPosition(new Point(i*100,0));
+                inputCar.setPosition(new Point(i*carDistance,0));
                 break;
             }
         }
@@ -122,5 +123,18 @@ public class CarModel {
 
     public void removeCar(Car car) {
         cars.remove(car);
+    }
+
+    public Car stringToCar(String carName){
+        Car newCar = null;
+
+        try{
+            Class carClass = Class.forName("Cars." + carName);
+            newCar = (Car) carClass.getConstructor().newInstance();
+
+        }catch(Exception e){
+            System.out.println(e.toString());
+        }
+        return newCar;
     }
 }

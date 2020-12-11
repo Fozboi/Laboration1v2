@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * Samlar rörelse-metoder
  */
-public interface Moveable{
+public interface IHasEngine {
     void move();
     void turnLeft();
     void turnRight();

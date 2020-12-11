@@ -6,7 +6,7 @@ import java.awt.*;
  * Superklass Cars.Car, håller reda på en bils riktning, position och hastighet
  * Innehåller samtliga bilars funktioner men vissa override:as av subklasser
  */
-public abstract class Car implements Moveable{
+public abstract class Car implements IHasEngine {
     private Point position = new Point(0,0);
     private double xcoord;
     private double ycoord;

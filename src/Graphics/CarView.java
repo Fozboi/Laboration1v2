@@ -83,6 +83,7 @@ public class CarView extends JFrame{
         this.setTitle(title);
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(true);
 
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
@@ -163,5 +164,8 @@ public class CarView extends JFrame{
     }
 
     public int getGasAmount(){return gasAmount;}
+
+    public int getX(){return X;}
+    public int getY(){return Y;}
 
 }

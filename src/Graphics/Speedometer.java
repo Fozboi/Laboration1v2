@@ -22,12 +22,11 @@ public class Speedometer extends JLabel{
     private static DecimalFormat df = new DecimalFormat("0.0");
 
     private void setText(){
-        String labelText = "<html>";
+        String labelText = "";
 
         for(Car car : carModel.cars){
-            labelText = labelText + car.getModelName() + " : " + df.format(car.getCurrentSpeed()) + "km/h <br>";
+            labelText = labelText + car.getModelName() + " : " + df.format(car.getCurrentSpeed()) + "    |    ";
         }
-        labelText = labelText + "</html>";
 
         this.setText(labelText);
     }

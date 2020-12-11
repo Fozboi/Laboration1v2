@@ -133,8 +133,14 @@ public class CarController {
         carView.addCarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carModel.addCar(stringToCar(carView.carModelField.getText()));
-                carView.drawPanel.addCar(carModel.cars.get(carModel.cars.size()-1));
+                if(carModel.cars.size() < 10){
+                    carModel.addCar(carModel.stringToCar(carView.carModelField.getText()));
+                    carView.drawPanel.addCar(carModel.cars.get(carModel.cars.size()-1));
+                    fitXCarPanel();
+                }else{
+                    throw new IllegalStateException("No more space");
+                }
+
             }
 
         });
@@ -155,23 +161,35 @@ public class CarController {
                         System.out.println("Ingen sådan bil finns");
                     }
                 }
+                fitXCarPanel();
             }
 
         });
 
     }
 
-    public Car stringToCar(String carName){
-        Car newCar = null;
-
-        try{
-            Class carClass = Class.forName("Cars." + carName);
-            newCar = (Car) carClass.getConstructor().newInstance();
-
-        }catch(Exception e){
-            System.out.println(e.toString());
+    private void fitXCarPanel(){
+        int x = 0;
+        for(Car car : carModel.cars){
+            if(car.getPosition().getX() > x){
+                x = (int) car.getPosition().getX();
+            }
         }
-        return newCar;
+        x += carModel.carDistance;
+
+        if(x > carView.getX()){
+            System.out.println("Make bigger");
+            carView.drawPanel.setPreferredSize(new Dimension(x,carView.drawPanel.getHeight()));
+            carView.setPreferredSize(new Dimension(x,carView.getHeight()));
+
+            carView.pack();
+        }else if(x <= carView.getX()){
+            System.out.println("Set normal");
+            carView.drawPanel.setPreferredSize(new Dimension(carView.getX(),carView.drawPanel.getHeight()));
+            carView.setPreferredSize(new Dimension(carView.getX(),carView.getHeight()));
+
+            carView.pack();
+        }
     }
 
 
