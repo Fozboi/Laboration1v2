@@ -131,6 +131,7 @@ public class CarController {
             }
         });
 
+        //Metoden går igenom cars bakifrån och tar bort den första bilen den hittar
         carView.removeCarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
