@@ -5,7 +5,7 @@ import Cars.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-/*
+/**
 * This class represents the Controller part in the MVC pattern.
 * It's responsibilities is to listen to the View and responds in a appropriate manner by
 * modifying the model state and the updating the view.
@@ -15,7 +15,7 @@ public class CarModel {
 
     public final int carDistance = 100;
     // A list of cars, modify if needed
-    ArrayList<Car> cars = new ArrayList<>();
+    ArrayList<Car> cars;
 
     public CarModel(ArrayList<Car> carsList){
         cars = carsList;
@@ -90,9 +90,7 @@ public class CarModel {
         }
     }
 
-
     public ArrayList<Car> getCars(){return cars;}
-
 
     public void addCar(Car inputCar) {
         Boolean found = false;
@@ -118,7 +116,6 @@ public class CarModel {
         }else{
             cars.add(inputCar);
         }
-
     }
 
     public void removeCar(Car car) {

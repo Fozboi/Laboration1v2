@@ -12,7 +12,6 @@ public class CarController {
     CarModel carModel;
     CarView carView;
 
-
     public final int delay = 50;
     public Timer timer = new Timer(delay, new TimerListener());
 
@@ -38,7 +37,6 @@ public class CarController {
         cc.initButtonFunctionality();
 
         String string = "Saab95";
-
     }
 
     public class TimerListener implements ActionListener {
@@ -52,7 +50,6 @@ public class CarController {
             }
             // repaint() calls the paintComponent method of the panel
             carView.repaint();
-
         }
     }
 
@@ -140,9 +137,7 @@ public class CarController {
                 }else{
                     throw new IllegalStateException("No more space");
                 }
-
             }
-
         });
 
         carView.removeCarButton.addActionListener(new ActionListener() {
@@ -163,9 +158,7 @@ public class CarController {
                 }
                 fitXCarPanel();
             }
-
         });
-
     }
 
     private void fitXCarPanel(){
@@ -189,7 +182,4 @@ public class CarController {
             carView.pack();
         }
     }
-
-
-
 }

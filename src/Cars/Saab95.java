@@ -9,7 +9,6 @@ public class Saab95 extends Car implements IHasTurbo{
 
     private boolean turboOn;
 
-    
     public Saab95(){
         setNrDoors(2);
         setColor(Color.red);
@@ -18,13 +17,10 @@ public class Saab95 extends Car implements IHasTurbo{
         setModelName("Saab95");
         stopEngine();
     }
-    
-
 
     public void setTurboOn(){
 	    turboOn = true;
     }
-
     public void setTurboOff(){
 	    turboOn = false;
     }

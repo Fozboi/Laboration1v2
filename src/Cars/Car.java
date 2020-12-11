@@ -23,7 +23,6 @@ public abstract class Car implements IHasEngine,IMoveable {
     private Color color; // Color of the car
     private String modelName; // The car model name
 
-
     /**
      * metoden move, tar en position för en bil och utifrån rikting förskjuter den längs axel
      */

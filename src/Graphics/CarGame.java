@@ -37,7 +37,6 @@ public class CarGame extends JFrame{
             car.gas(0.1);
             truck.gas(0.1);
 
-
             if(truck.inRange(car) && !truck.getLoadedCars().contains(car) && i%175 == 1){
                 car.setCurrentSpeed(0);
                 truck.setCurrentSpeed(0);
@@ -56,9 +55,6 @@ public class CarGame extends JFrame{
                 System.out.println("Avlastad");
 
             }
-
-
-
 
             car.move();
             truck.move();
@@ -137,7 +133,4 @@ public class CarGame extends JFrame{
             Thread.currentThread().interrupt();
         }
     }
-
-
-
 }

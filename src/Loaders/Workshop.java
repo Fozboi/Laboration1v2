@@ -42,6 +42,4 @@ public class Workshop<T extends Car> implements Loadable<T> {
     public void unloadObject(T car) {
         loadedCars.remove(car);
     }
-
-
 }
