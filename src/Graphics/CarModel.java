@@ -16,11 +16,7 @@ public class CarModel {
 
     public final int carDistance = 100;
     // A list of cars, modify if needed
-    ArrayList<Car> cars;
-
-    public CarModel(ArrayList<Car> carsList){
-        cars = carsList;
-    }
+    ArrayList<Car> cars = new ArrayList<>(10);
 
     public void breakTurn(Car car){
         car.stopEngine();
@@ -96,19 +92,23 @@ public class CarModel {
     public void addCar(Car inputCar) {
         Boolean found = false;
 
-        for(int i = 0; i <= 9; i++){
+        if(cars.size() == 0)
+            found = true;
+        else {
+            for (int i = 0; i <= 9; i++) {
 
-            for(Car car : cars){
-                if(car.getPosition().getX() == i*carDistance){
-                    break;
-                }else if(car == cars.get(cars.size()-1)){
-                    found = true;
+                for (Car car : cars) {
+                    if (car.getPosition().getX() == i * carDistance) {
+                        break;
+                    } else if (car == cars.get(cars.size() - 1)) {
+                        found = true;
+                    }
                 }
-            }
 
-            if(found){
-                inputCar.setPosition(new Point(i*carDistance,0));
-                break;
+                if (found) {
+                    inputCar.setPosition(new Point(i * carDistance, 0));
+                    break;
+                }
             }
         }
 

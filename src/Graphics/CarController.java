@@ -18,25 +18,17 @@ public class CarController {
     public static void main(String[] args) {
         CarController cc = new CarController();
 
-        ArrayList<Car> cars = new ArrayList<>(10);
+        cc.carModel = new CarModel();
 
-        Car volvo = new Volvo240();
-        Car saab = new Saab95();
-        saab.setPosition(new Point(100,0));
-        Car scania = new Scania();
-        scania.setPosition(new Point(200,0));
+        cc.carModel.addCar(new Volvo240());
+        cc.carModel.addCar(new Saab95());
+        cc.carModel.addCar(new Scania());
 
-        cars.add(volvo);
-        cars.add(saab);
-        cars.add(scania);
-
-        cc.carModel = new CarModel(cars);
         cc.carView = new CarView("CarSim 2.0", cc.carModel);
+
 
         cc.timer.start();
         cc.initButtonFunctionality();
-
-        String string = "Saab95";
     }
 
     public class TimerListener implements ActionListener {
@@ -143,20 +135,23 @@ public class CarController {
         carView.removeCarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(carModel.cars.size() == 0){
+                    throw new IllegalStateException("No cars exist");
+                }else{
+                    for(int i = carModel.cars.size()-1; i >= 0; i--){
+                        if(carModel.cars.get(i).getModelName().equals(carView.carModelField.getText())){
 
-                for(int i = carModel.cars.size()-1; i >= 0; i--){
-                    if(carModel.cars.get(i).getModelName().equals(carView.carModelField.getText())){
+                            carView.drawPanel.removeCar(carModel.cars.get(i));
+                            carModel.removeCar(carModel.cars.get(i));
 
-                        carView.drawPanel.removeCar(carModel.cars.get(i));
-                        carModel.removeCar(carModel.cars.get(i));
-
-                        break;
+                            break;
+                        }
+                        if(i == 0){
+                            throw new IllegalStateException("No such car exists");
+                        }
                     }
-                    if(i == 0){
-                        throw new IllegalStateException("No such car exists");
-                    }
-                }
                 fitXCarPanel();
+                }
             }
         });
     }

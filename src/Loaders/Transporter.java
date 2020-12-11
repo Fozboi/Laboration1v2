@@ -155,15 +155,10 @@ public class Transporter implements Loadable<Car>, IHasEngine, IMoveable,IHasTra
     public void setDir(int newDir) {hasATruck.setDir(newDir);}
     public Truck getTruck(){ return hasATruck; }
     public double getPickupRange(){return pickupRange;}
-
     @Override
-    public void setTrailerAngle(double newAngle) {
-        throw new IllegalArgumentException("Transporters can only have their ramp/trailer up or down");
-    }
+    public void setTrailerAngle(double newAngle) {throw new IllegalArgumentException("Transporters can only have their ramp/trailer up or down");}
     @Override
-    public double getTrailerAngle() {
-        throw new IllegalArgumentException("Transporters do now have an angle of their ramp");
-    }
+    public double getTrailerAngle() {throw new IllegalArgumentException("Transporters do now have an angle of their ramp");}
     @Override
     public boolean trailerIsUp() {return hasATruck.trailerIsUp();}
     @Override
