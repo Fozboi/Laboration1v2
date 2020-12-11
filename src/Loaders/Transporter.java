@@ -1,9 +1,6 @@
 package Loaders;
 
-import Cars.Car;
-import Cars.IHasEngine;
-import Cars.Scania;
-import Cars.Truck;
+import Cars.*;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -11,7 +8,7 @@ import java.util.ArrayList;
 /**
  * Lastbil Loaders.Transporter, har ett flak med enbart två lägen.
  */
-public class Transporter implements Loadable<Car>, IHasEngine {
+public class Transporter implements Loadable<Car>, IHasEngine, IMoveable {
     Truck hasATruck;
     int carCapacity;
     double pickupRange;
