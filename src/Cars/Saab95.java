@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * subklass Cars.Saab95 ärver Cars.Car, har en turbo
  */
-public class Saab95 extends Car{
+public class Saab95 extends Car implements IHasTurbo{
 
     private boolean turboOn;
 

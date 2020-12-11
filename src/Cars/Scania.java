@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * Lastbil Cars.Scania, har ett flak med en vinkel
  */
-public class Scania extends Truck {
+public class Scania extends Truck{
     private double trailerAngle;
 
     public Scania(){
@@ -16,8 +16,9 @@ public class Scania extends Truck {
         stopEngine();
     }
 
+    @Override
     public double speedFactor(){
-        if(trailerAngle == 0){
+        if(trailerIsUp()){
             return getEnginePower() * 0.01;
         }
         else{
@@ -30,6 +31,7 @@ public class Scania extends Truck {
      * och bilen ej rör sig
      * @param newAngle vinkel flaket önskas flyttas till
      */
+    @Override
      public void setTrailerAngle(double newAngle){
         if(newAngle <= 70 && newAngle >= 0){
             if(getCurrentSpeed() == 0){
@@ -47,10 +49,18 @@ public class Scania extends Truck {
     /**
      * ger vinkeln på flaker
      */
+    @Override
     public double getTrailerAngle(){
         return trailerAngle;
     }
 
+    @Override
+    public boolean trailerIsUp() {
+        if(trailerAngle == 0)
+            return true;
+        else
+            return false;
+    }
 
 
 }

@@ -44,19 +44,19 @@ public class CarModel {
         }
     }
 
-    void setTurboOn() {
+    <T extends IHasTurbo> void setTurboOn() {
         for(Car car : cars){
-            if(car instanceof Saab95){
-                ((Saab95) car).setTurboOn();
-            }
+            try{
+                ((T) car).setTurboOn();
+            }catch(Exception e){}
         }
     }
 
-    void setTurboOff() {
+    <T extends IHasTurbo> void setTurboOff() {
         for(Car car : cars){
-            if(car instanceof Saab95){
-                ((Saab95) car).setTurboOff();
-            }
+            try{
+                ((T) car).setTurboOff();
+            }catch(Exception e){}
         }
     }
 
