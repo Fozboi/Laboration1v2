@@ -7,6 +7,7 @@ import java.awt.*;
  */
 public class Scania extends Truck{
     private double trailerAngle;
+    private final double trailerMaxAngle = 70;
 
     public Scania(){
         setNrDoors(2);
@@ -33,7 +34,9 @@ public class Scania extends Truck{
      */
     @Override
      public void setTrailerAngle(double newAngle){
-        if(newAngle <= 70 && newAngle >= 0){
+
+        if(newAngle <= trailerMaxAngle && newAngle >= 0){
+
             if(getCurrentSpeed() == 0){
                 trailerAngle = newAngle;
             }
@@ -56,10 +59,22 @@ public class Scania extends Truck{
 
     @Override
     public boolean trailerIsUp() {
-        if(trailerAngle == 0)
-            return true;
-        else
-            return false;
+        return trailerAngle == 0;
+    }
+
+    @Override
+    public boolean trailersIsDown() {
+        return trailerAngle == trailerMaxAngle;
+    }
+
+    @Override
+    public void setTrailerDown() {
+        setTrailerAngle(trailerMaxAngle);
+    }
+
+    @Override
+    public void setTrailerUp() {
+        setTrailerAngle(0);
     }
 
 

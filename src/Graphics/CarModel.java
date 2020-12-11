@@ -1,6 +1,7 @@
 package Graphics;
 
 import Cars.*;
+import Loaders.IHasTrailer;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -48,7 +49,7 @@ public class CarModel {
         for(Car car : cars){
             try{
                 ((T) car).setTurboOn();
-            }catch(Exception e){}
+            }catch(ClassCastException e){}
         }
     }
 
@@ -56,23 +57,23 @@ public class CarModel {
         for(Car car : cars){
             try{
                 ((T) car).setTurboOff();
-            }catch(Exception e){}
+            }catch(ClassCastException e){}
         }
     }
 
-    void liftBed() {
+    <T extends IHasTrailer>void liftBed(){
         for(Car car : cars){
-            if(car instanceof Scania){
-                ((Scania) car).setTrailerAngle(70);
-            }
+            try{
+                ((T) car).setTrailerUp();
+            }catch(ClassCastException e){}
         }
     }
 
-    void lowerBed() {
+    <T extends IHasTrailer>void lowerBed(){
         for(Car car : cars){
-            if(car instanceof Scania){
-                ((Scania) car).setTrailerAngle(0);
-            }
+            try{
+                ((T) car).setTrailerDown();
+            }catch(ClassCastException e){}
         }
     }
 

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * Lastbil Loaders.Transporter, har ett flak med enbart två lägen.
  */
-public class Transporter implements Loadable<Car>, IHasEngine, IMoveable {
+public class Transporter implements Loadable<Car>, IHasEngine, IMoveable,IHasTrailer{
     Truck hasATruck;
     int carCapacity;
     double pickupRange;
@@ -30,10 +30,10 @@ public class Transporter implements Loadable<Car>, IHasEngine, IMoveable {
     }
 
     public void setRampUp(){
-        hasATruck.setTrailerAngle(0);
+        hasATruck.setTrailerUp();
     }
     public void setRampDown(){
-        hasATruck.setTrailerAngle(70);
+        hasATruck.setTrailerDown();
     }
     /**
      * kollar om bilen kan lastas.
@@ -50,7 +50,7 @@ public class Transporter implements Loadable<Car>, IHasEngine, IMoveable {
             return false;
         }else if(loadedCars.size() >= carCapacity){
             return false;
-        }else if(hasATruck.getTrailerAngle() != 70){
+        }else if(!trailersIsDown()){
             return false;
         }else
             return true;
@@ -161,4 +161,20 @@ public class Transporter implements Loadable<Car>, IHasEngine, IMoveable {
     public Truck getTruck(){ return hasATruck; }
     public double getPickupRange(){return pickupRange;}
 
+    @Override
+    public void setTrailerAngle(double newAngle) {
+        throw new IllegalArgumentException("Transporters can only have their ramp/trailer up or down");
+    }
+    @Override
+    public double getTrailerAngle() {
+        throw new IllegalArgumentException("Transporters do now have an angle of their ramp");
+    }
+    @Override
+    public boolean trailerIsUp() {return hasATruck.trailerIsUp();}
+    @Override
+    public boolean trailersIsDown() {return hasATruck.trailersIsDown();}
+    @Override
+    public void setTrailerDown() {setRampDown();}
+    @Override
+    public void setTrailerUp() { setRampUp();}
 }
