@@ -8,8 +8,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Observable;
+
 
 /**
 * This class represents the Controller part in the MVC pattern.
@@ -24,21 +26,26 @@ public class CarModel extends Observable {
     private final int delay = 50;
     private Timer timer = new Timer(delay, new TimerListener());
     private ArrayList<Car> cars = new ArrayList<>(10);
-    public HashMap<Car,Dimension> carSizes = new HashMap<>();
+    private HashMap<Car,Dimension> carSizes = new HashMap<>();
     public Dimension worldSize = new Dimension(carDistance*maxNrCars,560);
+    private boolean fullyInitialized = false;
 
     public CarModel(){
         timer.start();
     }
 
     public class TimerListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
 
-            for (Car car : cars) {
-                if (hitWall(car)) {
-                    breakTurn(car);
+        public void actionPerformed(ActionEvent e) {
+            if(fullyInitialized){
+                orderCars();
+
+                for (Car car : cars) {
+                    if (hitWall(car)) {
+                        breakTurn(car);
+                    }
+                    car.move();
                 }
-                car.move();
                 setChanged();
                 notifyObservers();
             }
@@ -53,7 +60,7 @@ public class CarModel extends Observable {
         if(        (x <= 0 && carDir == Car.WEST)
                 || (x >= worldSize.width  - carSizes.get(car).width && carDir == Car.EAST)
                 || (y <= 0 && carDir == Car.NORTH)
-                || (y >= worldSize.height - carSizes.get(car).width && carDir == Car.SOUTH)  ){
+                || (y >= worldSize.height - carSizes.get(car).height && carDir == Car.SOUTH)  ){
             return true;
         }
         return false;
@@ -133,12 +140,13 @@ public class CarModel extends Observable {
 
 
     public void addCar(Car inputCar, Dimension carSize) {
-        Point opening = findOpening(inputCar);
-        inputCar.setPosition(opening);
+        inputCar.setPosition(new Point(cars.size()*carDistance,0));
         carSizes.put(inputCar,carSize);
         cars.add(inputCar);
+        fullyInitialized = true;
     }
 
+    //Metod vars funktion ej mer behövs
     private Point findOpening(Car inputCar){
         Boolean found = false;
 
@@ -166,7 +174,40 @@ public class CarModel extends Observable {
 
     public void removeCar(Car car) {
         cars.remove(car);
+        fitCars();
     }
+
+    private void fitCars(){
+        orderCars();
+        adjustCars();
+    }
+
+    private void orderCars(){
+        ArrayList<Car> orderedCars = new ArrayList<>(Collections.nCopies(maxNrCars,null));
+
+        for(Car car : cars){
+            int i = (int) car.getPosition().getX()/carDistance;
+            orderedCars.add(i,car);
+        }
+
+        for(int i = orderedCars.size()-1; i >= 0; i--){
+            if(orderedCars.get(i) == null){
+                orderedCars.remove(i);
+            }
+        }
+
+        cars = orderedCars;
+    }
+
+    private void adjustCars(){
+        for(int i = 0; i < cars.size(); i++){
+            Point oldPos = cars.get(i).getPosition();
+            Point newPos = new Point((int) i*carDistance,(int) oldPos.getY());
+            cars.get(i).setPosition(newPos);
+        }
+    }
+
+
 
     //kollar om det finns en sorts bil som matchar input-strängen
     //och returnerar isåfall ett objekt av den bilsorten

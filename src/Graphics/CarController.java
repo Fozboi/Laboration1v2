@@ -34,7 +34,6 @@ public class CarController implements Observer {
         carView.repaint();
     }
 
-    //kollar om någon bil krockar med en vägg och vänder den isåfall
 
     private void addCar(Car car){
         Integer carHeight = carView.drawPanel.findImageFromFile(car).getHeight();
