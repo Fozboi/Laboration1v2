@@ -22,9 +22,9 @@ public class CarController implements Observer {
 
         cc.carView = new CarView("CarSim 2.0", cc.carModel);
 
-        cc.addCar(new Volvo240());
-        cc.addCar(new Saab95());
-        cc.addCar(new Scania());
+        cc.addCar("Volvo240");
+        cc.addCar("Saab95");
+        cc.addCar("Scania");
 
         cc.initButtonFunctionality();
     }
@@ -35,10 +35,10 @@ public class CarController implements Observer {
     }
 
 
-    private void addCar(Car car){
-        Integer carHeight = carView.drawPanel.findImageFromFile(car).getHeight();
-        Integer carWidth = carView.drawPanel.findImageFromFile(car).getWidth();
-        carModel.addCar(car,new Dimension(carWidth,carHeight));
+    private void addCar(String carName){
+        Integer carHeight = carView.drawPanel.findImageFromFile(carModel.stringToCar(carName)).getHeight();
+        Integer carWidth = carView.drawPanel.findImageFromFile(carModel.stringToCar(carName)).getWidth();
+        carModel.createCar(carName,new Dimension(carWidth,carHeight));
     }
 
 
@@ -106,7 +106,7 @@ public class CarController implements Observer {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(carModel.getCars().size() < carModel.maxNrCars){
-                    addCar(carModel.stringToCar(carView.carModelField.getText()));
+                    addCar(carView.carModelField.getText());
                     fitXCarPanel();
                 }else{
                     throw new IllegalStateException("Only " + carModel.maxNrCars + " cars allowed");

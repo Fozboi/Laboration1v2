@@ -139,7 +139,8 @@ public class CarModel extends Observable {
     public ArrayList<Car> getCars(){return cars;}
 
 
-    public void addCar(Car inputCar, Dimension carSize) {
+    public void createCar(String carName, Dimension carSize) {
+        Car inputCar = stringToCar(carName);
         inputCar.setPosition(new Point(cars.size()*carDistance,0));
         carSizes.put(inputCar,carSize);
         cars.add(inputCar);

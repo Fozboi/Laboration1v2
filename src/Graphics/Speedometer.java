@@ -5,6 +5,7 @@ import Cars.*;
 import javax.swing.*;
 import java.awt.*;
 import java.text.DecimalFormat;
+import java.util.ConcurrentModificationException;
 
 public class Speedometer extends JLabel{
     private CarModel carModel;
@@ -23,13 +24,16 @@ public class Speedometer extends JLabel{
 
     //returns a text label with the car model followed by the current speed
     private void setText(){
-        String labelText = "";
+        try{
+            String labelText = "";
 
-        for(Car car : carModel.getCars()){
-            labelText = labelText + car.getModelName() + " : " + df.format(car.getCurrentSpeed()) + "    |    ";
-        }
+            for(Car car : carModel.getCars()){
+                labelText = labelText + car.getModelName() + " : " + df.format(car.getCurrentSpeed()) + "    |    ";
+            }
 
-        this.setText(labelText);
+            this.setText(labelText);
+        }catch(ConcurrentModificationException e){System.out.println("Stopped that weird bug again");} //IBLAND vid start kastas denna
+
     }
 
 }
