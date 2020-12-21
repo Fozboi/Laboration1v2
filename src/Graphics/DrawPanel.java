@@ -14,27 +14,50 @@ import java.util.HashMap;
 // This panel represent the animated part of the view with the car images.
 public class DrawPanel extends JPanel{
     HashMap<Car,BufferedImage> carImageMap = new HashMap<>();
+    CarModel carModel;
 
     // Initializes the panel and reads the images
-    public DrawPanel(int x, int y, ArrayList<Car> cars) {
+    public DrawPanel(int x, int y, CarModel carModel) {
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.green);
+        this.carModel = carModel;
 
-        for(Car car : cars){
-            addCar(car);
+        updateCarImageMap();
+    }
+
+    public void updateCarImageMap(){
+
+        for(Car car : carModel.getCars()){
+            if (!carImageMap.containsKey(car)) {
+                System.out.println("Added " + car.getModelName());
+                carImageMap.put(car,findImageFromFile(car));
+            }
         }
+
+        ArrayList<Car> abundantCars = new ArrayList<>();
+
+        carImageMap.forEach((car,image) -> {
+            if(!carModel.getCars().contains(car)){abundantCars.add(car);}});
+
+        for(Car car : abundantCars){carImageMap.remove(car);}
+
+
     }
 
     // This method is called each time the panel updates/refreshes/repaints itself
     @Override
     protected void paintComponent(Graphics g) {
+        updateCarImageMap();
         super.paintComponent(g);
-        carImageMap.forEach((k,v) -> g.drawImage(v, (int) k.getPosition().getX(), (int) k.getPosition().getY(), null));
+        for(Car car : carModel.getCars()){
+            g.drawImage(carImageMap.get(car),(int)car.getPosition().getX(),(int)car.getPosition().getY(),null);
+        }
     }
 
+
     //reads the image belonging to the input car and returns it
-    private BufferedImage getImage(Car car){
+    public BufferedImage findImageFromFile(Car car){
         BufferedImage image = null;
         try {
             image = ImageIO.read(new File("pics/" + car.getModelName() + ".jpg"));
@@ -45,6 +68,5 @@ public class DrawPanel extends JPanel{
         return image;
     }
 
-    public void addCar(Car car){ carImageMap.put(car,getImage(car));}
-    public void removeCar(Car car) { carImageMap.remove(car);}
+
 }

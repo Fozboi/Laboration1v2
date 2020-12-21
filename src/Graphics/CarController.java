@@ -6,60 +6,44 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 
-public class CarController {
+public class CarController implements Observer {
     private CarModel carModel;
     private CarView carView;
 
-    private final int delay = 50;
-    private Timer timer = new Timer(delay, new TimerListener());
 
     public static void main(String[] args) {
         CarController cc = new CarController();
 
         cc.carModel = new CarModel();
-
-        cc.carModel.addCar(new Volvo240());
-        cc.carModel.addCar(new Saab95());
-        cc.carModel.addCar(new Scania());
+        cc.carModel.addObserver(cc);
 
         cc.carView = new CarView("CarSim 2.0", cc.carModel);
 
+        cc.addCar(new Volvo240());
+        cc.addCar(new Saab95());
+        cc.addCar(new Scania());
 
-        cc.timer.start();
         cc.initButtonFunctionality();
     }
+
+    @Override
+    public void update(Observable carModel, Object arg) {
+        carView.repaint();
+    }
+
     //kollar om någon bil krockar med en vägg och vänder den isåfall
-    public class TimerListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            for (Car car : carModel.getCars()) {
 
-                if (hitWall(car)) {
-                    carModel.breakTurn(car);
-                }
-                car.move();
-            }
-            // repaint() calls the paintComponent method of the panel
-            carView.repaint();
-        }
+    private void addCar(Car car){
+        Integer carHeight = carView.drawPanel.findImageFromFile(car).getHeight();
+        Integer carWidth = carView.drawPanel.findImageFromFile(car).getWidth();
+        carModel.addCar(car,new Dimension(carWidth,carHeight));
     }
 
-    private boolean hitWall(Car car){
-        int mapWidth = carView.drawPanel.getWidth();
-        int mapHeight = carView.drawPanel.getHeight();
 
-        int x = (int) car.getPosition().getX();
-        int y = (int) car.getPosition().getY();
-        int carDir = car.getDir();
 
-        if(        (x <= 0 && carDir == Car.WEST)
-                || (x >= mapWidth  - carView.drawPanel.carImageMap.get(car).getWidth() && carDir == Car.EAST)
-                || (y <= 0 && carDir == Car.NORTH)
-                || (y >= mapHeight - carView.drawPanel.carImageMap.get(car).getHeight() && carDir == Car.SOUTH)  ){
-            return true;
-        }
-        return false;
-    }
     //initialiserar alla knappar i UI
     private void initButtonFunctionality(){
         carView.gasButton.addActionListener(new ActionListener() {
@@ -123,8 +107,7 @@ public class CarController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(carModel.getCars().size() < 10){
-                    carModel.addCar(carModel.stringToCar(carView.carModelField.getText()));
-                    carView.drawPanel.addCar(carModel.getCars().get(carModel.getCars().size()-1));
+                    addCar(carModel.stringToCar(carView.carModelField.getText()));
                     fitXCarPanel();
                 }else{
                     throw new IllegalStateException("No more space");
@@ -141,8 +124,6 @@ public class CarController {
                 }else{
                     for(int i = carModel.getCars().size()-1; i >= 0; i--){
                         if(carModel.getCars().get(i).getModelName().equals(carView.carModelField.getText())){
-
-                            carView.drawPanel.removeCar(carModel.getCars().get(i));
                             carModel.removeCar(carModel.getCars().get(i));
 
                             break;

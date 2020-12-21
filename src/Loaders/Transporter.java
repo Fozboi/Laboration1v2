@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * Lastbil Loaders.Transporter, har ett flak med enbart två lägen.
  */
-public class Transporter implements Loadable<Car>, IHasEngine, IMoveable,IHasTrailer{
+public class Transporter implements ILoadable<Car>, IHasEngine, IMoveable,IHasTrailer{
     Truck hasATruck;
     int carCapacity;
     double pickupRange;

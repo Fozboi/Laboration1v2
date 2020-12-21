@@ -3,8 +3,13 @@ package Graphics;
 import Cars.*;
 import Loaders.IHasTrailer;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Observable;
 
 /**
 * This class represents the Controller part in the MVC pattern.
@@ -12,11 +17,47 @@ import java.util.ArrayList;
 * modifying the model state and the updating the view.
  */
 
-public class CarModel {
+public class CarModel extends Observable {
 
     public final int carDistance = 100;
-    // A list of cars, modify if needed
+    public final int maxNrCars = 10;
+    private final int delay = 50;
+    private Timer timer = new Timer(delay, new TimerListener());
     private ArrayList<Car> cars = new ArrayList<>(10);
+    public HashMap<Car,Dimension> carSizes = new HashMap<>();
+    public Dimension worldSize = new Dimension(1000,560);
+
+    public CarModel(){
+        timer.start();
+    }
+
+    public class TimerListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+
+            for (Car car : cars) {
+                if (hitWall(car)) {
+                    breakTurn(car);
+                }
+                car.move();
+                setChanged();
+                notifyObservers();
+            }
+        }
+    }
+
+    private boolean hitWall(Car car){
+        int x = (int) car.getPosition().getX();
+        int y = (int) car.getPosition().getY();
+        int carDir = car.getDir();
+
+        if(        (x <= 0 && carDir == Car.WEST)
+                || (x >= worldSize.width  - carSizes.get(car).width && carDir == Car.EAST)
+                || (y <= 0 && carDir == Car.NORTH)
+                || (y >= worldSize.height - carSizes.get(car).width && carDir == Car.SOUTH)  ){
+            return true;
+        }
+        return false;
+    }
 
     //vänder bilen 180 grader och återställer dess hastighet
     public void breakTurn(Car car){
@@ -90,14 +131,21 @@ public class CarModel {
 
     public ArrayList<Car> getCars(){return cars;}
 
-    //lägger till en bil om det finns färre än 10 bilar samt en ledig plats för en ny bil
-    public void addCar(Car inputCar) {
+
+    public void addCar(Car inputCar, Dimension carSize) {
+        Point opening = findOpening(inputCar);
+        inputCar.setPosition(opening);
+        carSizes.put(inputCar,carSize);
+        cars.add(inputCar);
+    }
+
+    private Point findOpening(Car inputCar){
         Boolean found = false;
 
         if(cars.size() == 0)
-            found = true;
+            return new Point(0,0);
         else {
-            for (int i = 0; i <= 9; i++) {
+            for (int i = 0; i <= maxNrCars-1; i++) {
 
                 for (Car car : cars) {
                     if (car.getPosition().getX() == i * carDistance) {
@@ -108,25 +156,22 @@ public class CarModel {
                 }
 
                 if (found) {
-                    inputCar.setPosition(new Point(i * carDistance, 0));
-                    break;
+                    return new Point(i * carDistance, 0);
                 }
             }
         }
 
-        if(!found){
-            System.out.println("No free space!");
-        }else{
-            cars.add(inputCar);
-        }
+        throw new IllegalStateException("No openings for the car");
     }
 
     public void removeCar(Car car) {
+        setChanged();
+        notifyObservers();
         cars.remove(car);
     }
 
     //kollar om det finns en sorts bil som matchar input-strängen
-    //och omvandlar den isåfall till en instans av den bilsorten
+    //och returnerar isåfall ett objekt av den bilsorten
     public Car stringToCar(String carName){
         Car newCar = null;
 
