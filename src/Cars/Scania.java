@@ -41,7 +41,7 @@ public class Scania extends Truck{
                 trailerAngle = newAngle;
             }
             else{
-                throw new IllegalStateException("Cannot raise trailer while car is moving");
+                throw new IllegalStateException("Cannot move trailer while car is moving");
             }
         }
         else{
