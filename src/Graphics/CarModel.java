@@ -178,7 +178,7 @@ public class CarModel extends Observable {
             newCar = (Car) carClass.getConstructor().newInstance();
 
         }catch(Exception e){
-            System.out.println(e.toString());
+            throw new IllegalArgumentException("Unrecognised car model");
         }
         return newCar;
     }
