@@ -106,11 +106,11 @@ public class CarController implements Observer {
         carView.addCarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(carModel.getCars().size() < 10){
+                if(carModel.getCars().size() < carModel.maxNrCars){
                     addCar(carModel.stringToCar(carView.carModelField.getText()));
                     fitXCarPanel();
                 }else{
-                    throw new IllegalStateException("No more space");
+                    throw new IllegalStateException("Only " + carModel.maxNrCars + " cars allowed");
                 }
             }
         });

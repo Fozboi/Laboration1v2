@@ -25,7 +25,7 @@ public class CarModel extends Observable {
     private Timer timer = new Timer(delay, new TimerListener());
     private ArrayList<Car> cars = new ArrayList<>(10);
     public HashMap<Car,Dimension> carSizes = new HashMap<>();
-    public Dimension worldSize = new Dimension(1000,560);
+    public Dimension worldSize = new Dimension(carDistance*maxNrCars,560);
 
     public CarModel(){
         timer.start();
@@ -165,8 +165,6 @@ public class CarModel extends Observable {
     }
 
     public void removeCar(Car car) {
-        setChanged();
-        notifyObservers();
         cars.remove(car);
     }
 

@@ -30,7 +30,6 @@ public class DrawPanel extends JPanel{
 
         for(Car car : carModel.getCars()){
             if (!carImageMap.containsKey(car)) {
-                System.out.println("Added " + car.getModelName());
                 carImageMap.put(car,findImageFromFile(car));
             }
         }

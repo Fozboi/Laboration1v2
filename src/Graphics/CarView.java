@@ -65,11 +65,9 @@ public class CarView extends JFrame{
 
         initSpeedometer();
 
-        this.setPreferredSize(new Dimension(X,Y+speedometer.getPreferredSize().height));
+        this.setPreferredSize(new Dimension(X,carM.worldSize.height+240+speedometer.getPreferredSize().height));
         this.pack();
-
         this.setVisible(true);
-
     }
 
     private void initDrawPanel(){
@@ -162,6 +160,7 @@ public class CarView extends JFrame{
     public void initSpeedometer(){
         speedometer = new Speedometer(carM);
         this.add(speedometer);
+        speedometer.setPreferredSize(new Dimension(carM.worldSize.width,15));
     }
 
     public int getGasAmount(){return gasAmount;}
